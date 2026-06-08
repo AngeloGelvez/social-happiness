@@ -1,0 +1,58 @@
+@if(!flagLoader) {
+    <div class="flex min-h-screen p-6 gap-6">
+        <div class="flex flex-col justify-between gap-2 w-1/2 background-image p-6 rounded-xl text-white">
+            <img src="logo-SocialHappiness.png" alt="logotipo de la red social SocialHappiness" width="230px">
+
+            <div>
+                <h1>Conecta con lo que realmente importa</h1>
+                <p>Descubre una comunidad donde puedes ser tú mismo. Comparte tus ideas, encuentra inspiración y conoce
+                    personas increíbles que comparten tus mismos intereses.</p>
+            </div>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+            <form [formGroup]="formularioLogin" class="w-2/3 flex flex-col gap-6 items-center text-sm">
+                <div class="flex flex-col items-center">
+                    <h2 class="text-xl">¡Qué bueno verte de nuevo! 👋</h2>
+                    <p class="text-gray-600"><small>Tu espacio, tus reglas, tu comunidad.</small></p>
+                </div>
+
+                <div class="flex flex-col w-full">
+                    <label for="email" class="text-justify">Nombre de usuario</label>
+                    <input id="email" type="email" placeholder="Username"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="username">
+                </div>
+
+                <div class="flex flex-col w-full">
+                    <label for="pass" class="text-justify">Contraseña</label>
+                    <input id="pass" type="password" placeholder="••••••••"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="password">
+                </div>
+
+                <div class="w-full flex flex-col items-center">
+                    <button (click)="enviarFormulario()"
+                        class="w-full bg-gray-900 text-white px-2 py-1 rounded-xl cursor-pointer hover:bg-gray-700">Iniciar
+                        Sesión</button>
+
+                    @if(errorFlag) {
+                    <p class="text-(--alert-color)"><small>!Ocurrio un error! Vuelve a intentarlo más tarde.</small></p>
+                    }
+                </div>
+
+                <a href="#" class="text-sm">¿Aún no tienes una cuenta? <span class="text-(--secundary-color)">Regístrate
+                        gratis y disfruta de la experiencia.</span></a>
+            </form>
+        </div>
+    </div>
+}@else {
+    <div class="flex flex-col gap-3 items-center justify-center min-h-screen">
+        <span class="relative flex h-5 w-5">
+            <!-- El anillo que se expande -->
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <!-- El punto central estático -->
+            <span class="relative inline-flex rounded-full h-5 w-5 bg-blue-500"></span>
+        </span>
+        <span class="text-gray-500 font-medium text-base">Cargando...</span>
+    </div>
+}

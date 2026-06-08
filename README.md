@@ -1,59 +1,48 @@
-# SocialHappiness
+# SocialHappiness 🚀
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.1.
+**SocialHappiness** es una aplicación de red social moderna desarrollada en el frontend utilizando **Angular 19** y **Tailwind CSS**. Este proyecto simula una plataforma interactiva completa (feeds, usuarios, publicaciones, comentarios e interacciones) consumiendo datos provenientes de endpoints y APIs ficticias especializadas en testing y prototipado.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🛠️ Tecnologías y Herramientas Utilizadas
 
-```bash
+- **Frontend Framework:** Angular v19.0.1
+- **Estilos y Layout:** Tailwind CSS (Utility-first CSS framework para un diseño rápido y responsivo)
+- **Control de Estado y Rutas:** Angular Router & Signals (reactividad moderna)
+- **Iconos:** Heroicons / FontAwesome (según preferencia)
+
+---
+
+## 🔌 APIs y Origen de Datos
+
+Para simular toda la actividad de la red social de manera dinámica, el proyecto consume la API de **DummyJSON**. Puedes consultar la documentación y el repositorio oficial de la herramienta en los siguientes enlaces:
+
+- **Documentación de la API:** [DummyJSON Docs](https://dummyjson.com/docs)
+- **Repositorio del Proyecto API:** [GitHub - Ovi/DummyJSON](https://github.com/Ovi/DummyJSON)
+
+### Endpoints principales a consumir:
+- `/posts` - Para la carga del feed de publicaciones, creación y visualización de contenido.
+- `/users` - Para perfiles de usuario, autenticación simulada y listado de amigos/seguidores.
+- `/comments` - Para la sección de comentarios en cada publicación.
+
+---
+
+## 🎨 Inspiración de Diseño (UI/UX)
+
+La interfaz de usuario y la experiencia estética están fuertemente inspiradas en conceptos profesionales de diseño de interfaces alojados en Dribbble. El layout combina un enfoque minimalista y limpio con componentes visuales de comunidades modernas:
+
+1. **Analog Photography Community Feed:** [Ver Diseño en Dribbble](https://dribbble.com/shots/21918913-Analog-photography-community-feed) (Inspiración para el feed de publicaciones, manejo de imágenes y tarjetas de contenido).
+2. **Social Media Concept:** [Ver Diseño en Dribbble](https://dribbble.com/shots/22588296-Social-Media-Concept) (Inspiración para la estructura de la barra lateral, interacciones rápidas y tipografías).
+
+---
+
+## 🚀 Comenzando en Entorno Local
+
+Este proyecto fue generado e inicializado con [Angular CLI](https://github.com/angular/angular-cli) versión 19.0.1.
+
+### Servidor de Desarrollo
+
+Para iniciar un servidor de desarrollo local, ejecuta:
+
+## bash
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
