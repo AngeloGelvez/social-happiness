@@ -2,22 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EndPoints } from '../class/end-points';
 import { Observable } from 'rxjs';
-import { LoginModel } from '../class/login-model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class PostsService {
 
-  private rutaLoginEndPoint: EndPoints = new EndPoints();
+  private rutaPostEndPoint:EndPoints = new EndPoints();
 
   constructor(private http: HttpClient) { }
 
-  public userLogin(body:LoginModel):Observable<any> {
-    //console.log(this.rutaLoginEndPoint.getLogin, JSON.stringify(body));
-    return this.http.post<any>(
-      this.rutaLoginEndPoint.getLogin,
-      JSON.stringify(body),
+  public getPost():Observable<any> {
+    return this.http.get<any>(
+      this.rutaPostEndPoint.getPost,
       {
         headers: {
           "Content-Type": "Application/json"

@@ -1,3 +1,29 @@
-<div class="flex min-h-screen p-6 gap-6">
-    <h1>Bienvenido</h1>
+<div class="flex flex-col min-h-screen p-6 gap-6">
+    <!--LOGOTIPO RED SCIAL-->
+    <div class="flex gap-3 items-center fixed bottom-0 right-0 m-6">
+        <img src="./logo-only-social-happiness.png" alt="logotipo de social Happiness" width="30px">
+    </div>
+
+    <!--
+    <div class="w-full">
+        <input type="text" placeholder="Buscar publicación..." class="border border-1 border-solid border-gray-200 px-4 py-1 rounded-xl w-full">
+    </div>
+    -->
+
+    <div class="flex gap-6">
+        <!--Profile Module-->
+        <div class="flex flex-col gap-2 w-auto">
+            <app-profile-module></app-profile-module>
+        </div>
+
+        <!--Feed Module-->
+        <div class="w-3/5">
+            <app-feed-module></app-feed-module>
+        </div>
+
+        <!--Complements Options-->
+        <div class="w-auto">
+
+        </div>
+    </div>
 </div>

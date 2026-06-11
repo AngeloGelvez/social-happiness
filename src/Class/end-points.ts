@@ -3,6 +3,7 @@ export class EndPoints {
     private USERS:string = `${this.URL}/users`;
     private LOGIN:string = `${this.URL}/user/login`;
     private AUTHENTICATED:string = `${this.URL}/user/me`;
+    private POSTS:string = `${this.URL}/posts?limit=10`;
 
     constructor() {}
 
@@ -20,5 +21,9 @@ export class EndPoints {
 
     get getAuthenticated():string {
         return this.AUTHENTICATED;
+    }
+
+    get getPost():string {
+        return this.POSTS;
     }
 }

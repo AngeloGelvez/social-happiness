@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlName, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../service/login.service';
-import { LoginModel } from '../../Class/login-model';
+import { LoginModel } from '../../class/login-model';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
 
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit{
         this.router.navigate(["/"]);
       },
       complete: () => {
-        console.log("Termino autentcacion");
+        console.log("Termino autenticacion");
       }
     });
   }

@@ -8,17 +8,31 @@
 * {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 500;
   font-style: normal;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 p {
   font-size: 16px;
 }
+
+.background-feed-profile {
+  /* Forzamos a que tenga un tamaño mínimo si está vacío */
+  min-height: 150px; 
+  
+  /* El truco del degradado (separado por una coma de la url) */
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 77%, rgba(255, 255, 255, 1) 77%), 
+                    url("../public/imagen-login.jpg") !important;
+  
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+}
+
 
 .background-image {
   background-image: url(../public/imagen-login.jpg);
