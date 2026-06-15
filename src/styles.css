@@ -16,16 +16,13 @@ h1 {
   font-size: 20px;
 }
 
-p {
-  font-size: 16px;
-}
 
 .background-feed-profile {
   /* Forzamos a que tenga un tamaño mínimo si está vacío */
   min-height: 150px; 
   
   /* El truco del degradado (separado por una coma de la url) */
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 77%, rgba(255, 255, 255, 1) 77%), 
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 77%, rgba(246, 245, 245, 1) 77%), 
                     url("../public/imagen-login.jpg") !important;
   
   background-position: center !important;

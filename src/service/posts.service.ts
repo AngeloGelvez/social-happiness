@@ -12,9 +12,9 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  public getPost():Observable<any> {
+  public getPost(limitNumber:number, skipNumber:number):Observable<any> {
     return this.http.get<any>(
-      this.rutaPostEndPoint.getPost,
+      `${this.rutaPostEndPoint.getPost}?limit=${limitNumber}&skip=${skipNumber}`,
       {
         headers: {
           "Content-Type": "Application/json"

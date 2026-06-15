@@ -14,22 +14,9 @@ export class PostModuleComponent implements OnInit {
   @Input() dislikes!: number;
   @Input() tags!: string[];
   @Input() views!: number;
-  @Input() userId!: number;
-
-  bg_color!:string;
-  icon_bg_color!:string;
-
-  array_bg_colors: string[] = [
-    "bg-blue",
-    "bg-cyan",
-    "bg-yellow",
-    "bg-indigo",
-  ];
+  @Input() user!: { img: string, name:string, username:string };
 
   ngOnInit(): void {
-    let numberRandom = Math.round(Math.random() * 3);
-
-    this.bg_color = `${this.array_bg_colors[numberRandom]}-100`;
-    this.icon_bg_color = `${this.array_bg_colors[numberRandom]}-400`;
+    
   }
 }

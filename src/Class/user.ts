@@ -1,215 +1,217 @@
-// --- Interfaces para los objetos anidados ---
-interface Hair {
-  color: string;
-  type: string;
-}
-
-interface Coordinates {
-  lat: number;
-  lng: number;
-}
-
-interface Address {
-  address: string;
-  city: string;
-  state: string;
-  stateCode: string;
-  postalCode: string;
-  coordinates: Coordinates;
-  country: string;
-}
-
-interface Bank {
-  cardExpire: string;
-  cardNumber: string;
-  cardType: string;
-  currency: string;
-  iban: string;
-}
-
-interface CompanyAddress {
-  address: string;
-  city: string;
-  state: string;
-  stateCode: string;
-  postalCode: string;
-  coordinates: Coordinates;
-  country: string;
-}
-
-interface Company {
-  department: string;
-  name: string;
-  title: string;
-  address: CompanyAddress;
-}
-
-interface Crypto {
-  coin: string;
-  wallet: string;
-  network: string;
-}
-
-// --- Clase Principal ---
 export class User {
-  // Atributos privados
-  private _id: number;
-  private _firstName: string;
-  private _lastName: string;
-  private _maidenName: string;
-  private _age: number;
-  private _gender: string;
-  private _email: string;
-  private _phone: string;
-  private _username: string;
-  private _password: string;
-  private _birthDate: string;
-  private _image: string;
-  private _bloodGroup: string;
-  private _height: number;
-  private _weight: number;
-  private _eyeColor: string;
-  private _hair: Hair;
-  private _ip: string;
-  private _address: Address;
-  private _macAddress: string;
-  private _university: string;
-  private _bank: Bank;
-  private _company: Company;
-  private _ein: string;
-  private _ssn: string;
-  private _userAgent: string;
-  private _crypto: Crypto;
-  private _role: string;
-
-  // Constructor vacío (inicializa valores por defecto)
-  constructor() {
-    this._id = 0;
-    this._firstName = "";
-    this._lastName = "";
-    this._maidenName = "";
-    this._age = 0;
-    this._gender = "";
-    this._email = "";
-    this._phone = "";
-    this._username = "";
-    this._password = "";
-    this._birthDate = "";
-    this._image = "";
-    this._bloodGroup = "";
-    this._height = 0;
-    this._weight = 0;
-    this._eyeColor = "";
-    this._hair = { color: "", type: "" };
-    this._ip = "";
-    this._address = {
-      address: "",
-      city: "",
-      state: "",
-      stateCode: "",
-      postalCode: "",
+  private _id: number = 0;
+  private _firstName: string = '';
+  private _lastName: string = '';
+  private _maidenName: string = '';
+  private _age: number = 0;
+  private _gender: string = '';
+  private _email: string = '';
+  private _phone: string = '';
+  private _username: string = '';
+  private _password: string = '';
+  private _birthDate: string = '';
+  private _image: string = '';
+  private _bloodGroup: string = '';
+  private _height: number = 0;
+  private _weight: number = 0;
+  private _eyeColor: string = '';
+  private _hair: { color: string; type: string } = { color: '', type: '' };
+  private _ip: string = '';
+  private _address: {
+    address: string;
+    city: string;
+    state: string;
+    stateCode: string;
+    postalCode: string;
+    coordinates: { lat: number; lng: number };
+    country: string;
+  } = {
+    address: '',
+    city: '',
+    state: '',
+    stateCode: '',
+    postalCode: '',
+    coordinates: { lat: 0, lng: 0 },
+    country: ''
+  };
+  private _macAddress: string = '';
+  private _university: string = '';
+  private _bank: {
+    cardExpire: string;
+    cardNumber: string;
+    cardType: string;
+    currency: string;
+    iban: string;
+  } = {
+    cardExpire: '',
+    cardNumber: '',
+    cardType: '',
+    currency: '',
+    iban: ''
+  };
+  private _company: {
+    department: string;
+    name: string;
+    title: string;
+    address: {
+      address: string;
+      city: string;
+      state: string;
+      stateCode: string;
+      postalCode: string;
+      coordinates: { lat: number; lng: number };
+      country: string;
+    };
+  } = {
+    department: '',
+    name: '',
+    title: '',
+    address: {
+      address: '',
+      city: '',
+      state: '',
+      stateCode: '',
+      postalCode: '',
       coordinates: { lat: 0, lng: 0 },
-      country: ""
-    };
-    this._macAddress = "";
-    this._university = "";
-    this._bank = { cardExpire: "", cardNumber: "", cardType: "", currency: "", iban: "" };
-    this._company = {
-      department: "",
-      name: "",
-      title: "",
-      address: { address: "", city: "", state: "", stateCode: "", postalCode: "", coordinates: { lat: 0, lng: 0 }, country: "" }
-    };
-    this._ein = "";
-    this._ssn = "";
-    this._userAgent = "";
-    this._crypto = { coin: "", wallet: "", network: "" };
-    this._role = "";
+      country: ''
+    }
+  };
+  private _ein: string = '';
+  private _ssn: string = '';
+  private _userAgent: string = '';
+  private _crypto: { coin: string; wallet: string; network: string } = { coin: '', wallet: '', network: '' };
+  private _role: string = '';
+
+  // Constructor que permite instanciar vacío o con datos de la petición
+  constructor(data?: any) {
+    if (data) {
+      this.fill(data);
+    }
   }
 
-  // --- Getters y Setters ---
+  // Método para rellenar o actualizar los datos limpiamente
+  public fill(data: any): void {
+    this.id = data.id ?? 0;
+    this.firstName = data.firstName ?? '';
+    this.lastName = data.lastName ?? '';
+    this.maidenName = data.maidenName ?? '';
+    this.age = data.age ?? 0;
+    this.gender = data.gender ?? '';
+    this.email = data.email ?? '';
+    this.phone = data.phone ?? '';
+    this.username = data.username ?? '';
+    this.password = data.password ?? '';
+    this.birthDate = data.birthDate ?? '';
+    this.image = data.image ?? '';
+    this.bloodGroup = data.bloodGroup ?? '';
+    this.height = data.height ?? 0;
+    this.weight = data.weight ?? 0;
+    this.eyeColor = data.eyeColor ?? '';
+    this.hair = data.hair ?? { color: '', type: '' };
+    this.ip = data.ip ?? '';
+    this.address = data.address ?? { address: '', city: '', state: '', stateCode: '', postalCode: '', coordinates: { lat: 0, lng: 0 }, country: '' };
+    this.macAddress = data.macAddress ?? '';
+    this.university = data.university ?? '';
+    this.bank = data.bank ?? { cardExpire: '', cardNumber: '', cardType: '', currency: '', iban: '' };
+    this.company = data.company ?? { department: '', name: '', title: '', address: { address: '', city: '', state: '', stateCode: '', postalCode: '', coordinates: { lat: 0, lng: 0 }, country: '' } };
+    this.ein = data.ein ?? '';
+    this.ssn = data.ssn ?? '';
+    this.userAgent = data.userAgent ?? '';
+    this.crypto = data.crypto ?? { coin: '', wallet: '', network: '' };
+    this.role = data.role ?? '';
+  }
 
-  public get id(): number { return this._id; }
-  public set id(value: number) { this._id = value; }
+  // --- GETTERS Y SETTERS ---
 
-  public get firstName(): string { return this._firstName; }
-  public set firstName(value: string) { this._firstName = value; }
+  get id(): number { return this._id; }
+  set id(value: number) { this._id = value; }
 
-  public get lastName(): string { return this._lastName; }
-  public set lastName(value: string) { this._lastName = value; }
+  get firstName(): string { return this._firstName; }
+  set firstName(value: string) { this._firstName = value; }
 
-  public get maidenName(): string { return this._maidenName; }
-  public set maidenName(value: string) { this._maidenName = value; }
+  get lastName(): string { return this._lastName; }
+  set lastName(value: string) { this._lastName = value; }
 
-  public get age(): number { return this._age; }
-  public set age(value: number) { this._age = value; }
+  get maidenName(): string { return this._maidenName; }
+  set maidenName(value: string) { this._maidenName = value; }
 
-  public get gender(): string { return this._gender; }
-  public set gender(value: string) { this._gender = value; }
+  get age(): number { return this._age; }
+  set age(value: number) { this._age = value; }
 
-  public get email(): string { return this._email; }
-  public set email(value: string) { this._email = value; }
+  get gender(): string { return this._gender; }
+  set gender(value: string) { this._gender = value; }
 
-  public get phone(): string { return this._phone; }
-  public set phone(value: string) { this._phone = value; }
+  get email(): string { return this._email; }
+  set email(value: string) { this._email = value; }
 
-  public get username(): string { return this._username; }
-  public set username(value: string) { this._username = value; }
+  get phone(): string { return this._phone; }
+  set phone(value: string) { this._phone = value; }
 
-  public get password(): string { return this._password; }
-  public set password(value: string) { this._password = value; }
+  get username(): string { return this._username; }
+  set username(value: string) { this._username = value; }
 
-  public get birthDate(): string { return this._birthDate; }
-  public set birthDate(value: string) { this._birthDate = value; }
+  get password(): string { return this._password; }
+  set password(value: string) { this._password = value; }
 
-  public get image(): string { return this._image; }
-  public set image(value: string) { this._image = value; }
+  get birthDate(): string { return this._birthDate; }
+  set birthDate(value: string) { this._birthDate = value; }
 
-  public get bloodGroup(): string { return this._bloodGroup; }
-  public set bloodGroup(value: string) { this._bloodGroup = value; }
+  get image(): string { return this._image; }
+  set image(value: string) { this._image = value; }
 
-  public get height(): number { return this._height; }
-  public set height(value: number) { this._height = value; }
+  get bloodGroup(): string { return this._bloodGroup; }
+  set bloodGroup(value: string) { this._bloodGroup = value; }
 
-  public get weight(): number { return this._weight; }
-  public set weight(value: number) { this._weight = value; }
+  get height(): number { return this._height; }
+  set height(value: number) { this._height = value; }
 
-  public get eyeColor(): string { return this._eyeColor; }
-  public set eyeColor(value: string) { this._eyeColor = value; }
+  get weight(): number { return this._weight; }
+  set weight(value: number) { this._weight = value; }
 
-  public get hair(): Hair { return this._hair; }
-  public set hair(value: Hair) { this._hair = value; }
+  get eyeColor(): string { return this._eyeColor; }
+  set eyeColor(value: string) { this._eyeColor = value; }
 
-  public get ip(): string { return this._ip; }
-  public set ip(value: string) { this._ip = value; }
+  get hair(): { color: string; type: string } { return this._hair; }
+  set hair(value: { color: string; type: string }) { this._hair = value; }
 
-  public get address(): Address { return this._address; }
-  public set address(value: Address) { this._address = value; }
+  get ip(): string { return this._ip; }
+  set ip(value: string) { this._ip = value; }
 
-  public get macAddress(): string { return this._macAddress; }
-  public set macAddress(value: string) { this._macAddress = value; }
+  get address(): { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } {
+    return this._address;
+  }
+  set address(value: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string }) {
+    this._address = value;
+  }
 
-  public get university(): string { return this._university; }
-  public set university(value: string) { this._university = value; }
+  get macAddress(): string { return this._macAddress; }
+  set macAddress(value: string) { this._macAddress = value; }
 
-  public get bank(): Bank { return this._bank; }
-  public set bank(value: Bank) { this._bank = value; }
+  get university(): string { return this._university; }
+  set university(value: string) { this._university = value; }
 
-  public get company(): Company { return this._company; }
-  public set company(value: Company) { this._company = value; }
+  get bank(): { cardExpire: string; cardNumber: string; cardType: string; currency: string; iban: string } { return this._bank; }
+  set bank(value: { cardExpire: string; cardNumber: string; cardType: string; currency: string; iban: string }) { this._bank = value; }
 
-  public get ein(): string { return this._ein; }
-  public set ein(value: string) { this._ein = value; }
+  get company(): { department: string; name: string; title: string; address: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } } {
+    return this._company;
+  }
+  set company(value: { department: string; name: string; title: string; address: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } }) {
+    this._company = value;
+  }
 
-  public get ssn(): string { return this._ssn; }
-  public set ssn(value: string) { this._ssn = value; }
+  get ein(): string { return this._ein; }
+  set ein(value: string) { this._ein = value; }
 
-  public get userAgent(): string { return this._userAgent; }
-  public set userAgent(value: string) { this._userAgent = value; }
+  get ssn(): string { return this._ssn; }
+  set ssn(value: string) { this._ssn = value; }
 
-  public get crypto(): Crypto { return this._crypto; }
-  public set crypto(value: Crypto) { this._crypto = value; }
+  get userAgent(): string { return this._userAgent; }
+  set userAgent(value: string) { this._userAgent = value; }
 
-  public get role(): string { return this._role; }
-  public set role(value: string) { this._role = value; }
+  get crypto(): { coin: string; wallet: string; network: string } { return this._crypto; }
+  set crypto(value: { coin: string; wallet: string; network: string }) { this._crypto = value; }
+
+  get role(): string { return this._role; }
+  set role(value: string) { this._role = value; }
 }

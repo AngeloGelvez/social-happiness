@@ -1,0 +1,53 @@
+<div class="flex flex-col gap-6">
+    <div class="flex flex-col bg-stone-100 p-3 rounded-lg gap-4">
+        <div class="flex items-center bg-stone-100 border-b border-1-solid border-stone-200 py-2">
+            <input type="text" placeholder="¿Qué buscas hoy?" class="text-xs p-1 w-full">
+            <a class="bg-stone-100 rounded-lg text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                </svg></a>
+        </div>
+
+        <div>
+            <h2 class="text-base">Tendencias para ti</h2>
+            <p class="text-xs">Descubre lo que está dando de qué hablar hoy.</p>
+        </div>
+
+        @if(!loaderTags) {
+            <div class="flex flex-wrap gap-1 items-center">
+                @for(tag of listTags; track $index) {
+                    <app-tag
+                        [name] = "tag.name"
+                        [slug] = "tag.slug"
+                        [url] = "tag.url"
+                    ></app-tag>
+                }
+            </div>
+            <a href="#" class="bg-white border border-1-solid border-stone-200 rounded-lg px-2 py-1 text-xs text-center hover:bg-stone-200">Ver todas</a>
+        }@else {
+            <div class="bg-gray-100 gap-2 rounded-full px-2 py-1 w-fit animate-pulse flex flex-wrap items-center">
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+                <div class="h-3 bg-gray-300 rounded-sm w-12"></div>
+            </div>
+        }
+    </div>
+
+    <div class="flex flex-col bg-stone-100 p-3 rounded-lg gap-4">
+        <div class="flex flex-col gap-2">
+            <h2 class="text-base">{{ "¿Qué tienes en mente hoy, " + userName + "?" }}</h2>
+            <p class="text-xs">Comparte una idea, una foto o tu frase favorita...</p>
+        </div>
+        <a href="#" class="bg-gray-900 text-white border border-1-solid border-gray-200 rounded-lg px-2 py-1 text-xs text-center hover:bg-gray-700">Publicar</a>
+    </div>
+</div>

@@ -3,7 +3,9 @@ export class EndPoints {
     private USERS:string = `${this.URL}/users`;
     private LOGIN:string = `${this.URL}/user/login`;
     private AUTHENTICATED:string = `${this.URL}/user/me`;
-    private POSTS:string = `${this.URL}/posts?limit=10`;
+    private POSTS:string = `${this.URL}/posts`;
+    private TAGS:string = `${this.URL}/posts/tags`;
+    private QUOTES:string = `${this.URL}/quotes/random`;
 
     constructor() {}
 
@@ -25,5 +27,13 @@ export class EndPoints {
 
     get getPost():string {
         return this.POSTS;
+    }
+
+    get getTags():string {
+        return this.TAGS;
+    }
+
+    get getQuotas():string {
+        return this.QUOTES;
     }
 }

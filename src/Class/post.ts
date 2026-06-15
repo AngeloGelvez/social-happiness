@@ -12,6 +12,7 @@ export class Post {
   private _reactions: PostReactions = { likes: 0, dislikes: 0 };
   private _views: number = 0;
   private _userId: number = 0;
+  private _userModel: { img: string, name:string, username:string } = {img: "", name:"", username:""};
 
   // Constructor vacío
   constructor() {}
@@ -70,5 +71,13 @@ export class Post {
   }
   set userId(value: number) {
     this._userId = value;
+  }
+
+  // UserModel
+  get userModel(): { img: string, name:string, username:string } {
+    return this._userModel;
+  }
+  set userModel(value: { img: string, name:string, username:string }) {
+    this._userModel = value;
   }
 }
