@@ -2,27 +2,24 @@
 
     <div class="flex gap-6">
         <!--Profile Module-->
-        <div class="flex flex-col gap-8 rounded-lg bg-stone-100 p-5 w-1/4">
-            <a href="" class="flex gap-2 items-center text-base">
-                <span class="border border-1-solid border-blue-500 px-2 py-1 rounded-xl text-blue-500">
-                    <i class="ti ti-arrow-back-up"></i>
-                </span>
+        <div class="flex flex-col gap-8 rounded-lg bg-stone-100 p-5 pb-12 w-1/4 sticky top-5 h-screen">
+            <a [routerLink]="['/feed']" href="" class="flex gap-2 items-center text-base hover:bg-(--secundary-color) hover:text-white! px-2 py-1 rounded-lg border border-1-solid border-stone-200">
+                <i class="ti ti-arrow-back-up"></i>
                 Volver
             </a>
-            <div class="flex flex-col gap-2">
-                <div class="flex flex-col gap-8 justify-between">
+            <div class="flex flex-col gap-2 h-full">
+                <div class="flex flex-col gap-8 justify-between h-full">
                     <div>
                         <h2 class="font-semibold!">¡Este es tu rincón en la red!</h2>
-                        <p class="text-gray-500">Aquí es donde ocurre tu magia. En tu perfil tienes el control total
-                            para mostrarle al mundo quién eres.</p>
+                        <p class="text-gray-500 text-xs">Aquí es donde ocurre tu magia. En tu perfil tienes el control total para mostrarle al mundo quién eres.</p>
                     </div>
 
-                    <div class="flex flex-col justify-between gap-8 pb-3 h-[380px]">
+                    <div class="flex flex-col justify-between gap-8 pb-3 h-full">
                         <div class="flex flex-col gap-2">
                             <li class="list-none"><a class="w-full text-(--secundary-color) flex items-center gap-2"
                                     href="#"><i class="ti ti-location-bolt"></i> Mis publicaciones</a></li>
                             <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i
-                                        class="ti ti-message-share"></i> Respuestas / Comentarios</a></li>
+                                        class="ti ti-message-share"></i> Comentarios</a></li>
                             <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i
                                         class="ti ti-photo-bolt"></i> Multimedia</a></li>
                             <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i
@@ -43,19 +40,144 @@
             @if(userLocalStorage) {
             <div class="flex flex-col bg-stone-100 rounded-lg gap-4">
                 <div class="background-feed-profile rounded-xl pr-46 pt-24">
-                    <img class="rounded-full bg-gray-100 p-1 mx-24" [src]="userLocalStorage.image" width="75px"}
-                        alt="imagen de perfil usuario">
+                    <div class="mx-24 flex justify-between items-center w-full">
+                        <img class="rounded-full bg-gray-100 p-1" [src]="userLocalStorage.image" width="75px"}
+                            alt="imagen de perfil usuario">
+    
+                        <a href="" class="bg-blue-700 hover:bg-blue-900 px-2 py-1 font-semibold text-base text-white rounded-lg"><i class="ti ti-edit"></i>Editar</a>
+                    </div>
                 </div>
 
-                <div class="flex flex-col gap-8 justify-between mx-24">
-                    <div class="px-3">
-                        <h2 class="font-semibold!">{{ userLocalStorage.firstName + " " + userLocalStorage.lastName }}</h2>
+                <div class="flex flex-col gap-2 justify-between mx-24 pb-16">
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.firstName + " " + userLocalStorage.lastName }}</p>
+                            <p class="text-xs text-stone-500">Nombre completo</p>
+                        </div>
                         <p class="text-gray-500">{{ "@" + userLocalStorage.username }}</p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.birthDate | date }}</p>
+                            <p class="text-xs text-stone-500">Fecha de cumpleaños</p>
+                        </div>
+                        <p class="text-gray-500">{{ userLocalStorage.age + " Años" }}</p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.gender }}</p>
+                            <p class="text-xs text-stone-500">Genero</p>
+                        </div>
+                        @if(userLocalStorage.gender == "female") {
+                            <p class="text-gray-500"><i class="ti ti-venus"></i></p>
+                        }@else {
+                            <p class="text-gray-500"><i class="ti ti-gender-male"></i></p>
+                        }
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.phone }}</p>
+                            <p class="text-xs text-stone-500">Teléfono</p>
+                        </div>
+                        <p class="text-gray-500"><i class="ti ti-phone"></i></p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.email }}</p>
+                            <p class="text-xs text-stone-500">Email</p>
+                        </div>
+                        <p class="text-gray-500"><i class="ti ti-mail"></i></p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.address.country + ", " + userLocalStorage.address.city }}</p>
+                            <p class="text-xs text-stone-500">País residencia</p>
+                        </div>
+                        <p class="text-gray-500"><i class="ti ti-route-square-2"></i></p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.height }}</p>
+                            <p class="text-xs text-stone-500">Estatura (Cm)</p>
+                        </div>
+
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.weight }}</p>
+                            <p class="text-xs text-stone-500">Peso (kg)</p>
+                        </div>
+
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.eyeColor }}</p>
+                            <p class="text-xs text-stone-500">Color ojos</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">Cualidades del cabello</p>
+                            <p class="text-xs text-stone-500">Cabello</p>
+                        </div>
+
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.hair.color }}</p>
+                            <p class="text-xs text-stone-500">Color</p>
+                        </div>
+
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.hair.type }}</p>
+                            <p class="text-xs text-stone-500">Tipo</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.university }}</p>
+                            <p class="text-xs text-stone-500">Universidad</p>
+                        </div>
+                        <p class="text-gray-500"><i class="ti ti-school"></i></p>
+                    </div>
+
+                    <div class="flex justify-between items-center  py-1">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.company.name }}</p>
+                            <p class="text-xs text-stone-500">Lugar de trabajo</p>
+                        </div>
+                        <p class="text-gray-500"><i class="ti ti-building-cog"></i></p>
+                    </div>
+
+                    <div class="flex justify-between items-center py-1">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.company.title }}</p>
+                            <p class="text-xs text-stone-500">Titulo</p>
+                        </div>
+                        
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.company.department }}</p>
+                            <p class="text-xs text-stone-500">Departamento</p>
+                        </div>
+
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.company.address.country }}</p>
+                            <p class="text-xs text-stone-500">país</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center py-3">
+                        <div class="flex flex-col gap-0">
+                            <p class="font-semibold!">{{ userLocalStorage.company.address.city + ", " + userLocalStorage.company.address.state + ", " + userLocalStorage.company.address.address }}</p>
+                            <p class="text-xs text-stone-500">Dirección</p>
+                        </div>
                     </div>
                 </div>
             </div>
             }@else {
-            <p>No existe</p>
+                <p>No existe</p>
             }
         </div>
     </div>

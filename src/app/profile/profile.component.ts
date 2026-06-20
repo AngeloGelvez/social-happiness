@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../class/user';
 import { ProfileModuleComponent } from "../components/profile-module/profile-module.component";
 import { RouterLink } from "@angular/router";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit{

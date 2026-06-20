@@ -12,8 +12,8 @@
         <div class="flex flex-col justify-center items-center">
             <form [formGroup]="formularioLogin" class="w-2/3 flex flex-col gap-6 items-center text-sm">
                 <div class="flex flex-col items-center">
-                    <h2 class="text-xl">¡Qué bueno verte de nuevo! 👋</h2>
-                    <p class="text-gray-600"><small>Tu espacio, tus reglas, tu comunidad.</small></p>
+                    <h2 class="text-xl font-semibold!">¡Qué bueno verte de nuevo! 👋</h2>
+                    <p class="text-gray-600">Tu espacio, tus reglas, tu comunidad.</p>
                 </div>
 
                 <div class="flex flex-col w-full">
@@ -40,7 +40,7 @@
                     }
                 </div>
 
-                <a href="#" class="text-sm">¿Aún no tienes una cuenta? <span class="text-(--secundary-color)">Regístrate
+                <a [routerLink]="['/', 'register']" href="#" class="text-sm">¿Aún no tienes una cuenta? <span class="text-(--secundary-color) hover:text-blue-700">Regístrate
                         gratis y disfruta de la experiencia.</span></a>
             </form>
         </div>

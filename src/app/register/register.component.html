@@ -1,0 +1,86 @@
+<div class="flex min-h-screen justify-center py-16">
+    <div class="flex flex-col gap-6 justify-center items-center max-w-1/3">
+        <img src="logo-SocialHappiness.png" alt="logotipo de la red social SocialHappiness" width="230px">
+        <form [formGroup]="formularioRegistrarUsuario" class="flex flex-col gap-6 items-center text-sm">
+            <div class="flex flex-col gap-2 items-center text-center">
+                <h1 class="text-xl font-semibold!">¡Qué bueno tenerte por aquí! ✨</h1>
+                <p class="text-gray-600">Únete a una red de mentes activas. Configura tu perfil profesional, gestiona tu contenido y amplifica tu alcance desde hoy.</p>
+            </div>
+
+            <div class="flex gap-2 w-full items-center">
+                <div class="flex flex-col w-full">
+                    <label for="nombre" class="text-justify">Nombre:</label>
+                    <input id="nombre" type="email" placeholder="Username"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="nombre">
+                </div>
+
+                <div class="flex flex-col w-full">
+                    <label for="apellido" class="text-justify">Apellido:</label>
+                    <input id="apellido" type="email" placeholder="Username"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="apellido">
+                </div>
+            </div>
+
+            <div class="flex gap-2 w-full items-center">
+                <div class="flex flex-col w-full">
+                    <label for="nacimiento" class="text-justify">Fecha de nacimiento:</label>
+                    <input id="nacimiento" type="date"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="password">
+                </div>
+
+                <div class="flex flex-col w-1/3">
+                    <label for="age" class="text-justify">Edad:</label>
+                    <input id="age" type="text" placeholder="23 Años"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="password">
+                </div>
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label for="email" class="text-justify">Correo eletrónico:</label>
+                <input id="email" type="email" placeholder="ejemplo@gmail.com"
+                    class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                    formControlName="email">
+            </div>
+
+            <div class="flex gap-2 w-full items-center">
+                <div class="flex flex-col w-full">
+                    <label for="phone" class="text-justify">Teléfono</label>
+                    <input id="phone" type="number" placeholder="+57 123456789"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="phone">
+                </div>
+
+                <div class="flex flex-col w-full">
+                    <label for="gender" class="text-justify">Género</label>
+                    <select name="gender" id="gender" class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl">
+                        <option value="male" selected>Masculino</option>
+                        <option value="female">Femenino</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label for="pass" class="text-justify">Contraseña</label>
+                <input id="pass" type="password" placeholder="••••••••"
+                    class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                    formControlName="password">
+            </div>
+
+            <div class="w-full flex flex-col items-center">
+                <button (click)="enviarFormulario()"
+                    class="w-full bg-gray-900 text-white px-2 py-1 rounded-xl cursor-pointer hover:bg-gray-700">¡Empezar mi aventura!</button>
+
+                @if(errorFlag) {
+                    <p class="text-(--alert-color)"><small>!Ocurrio un error! Vuelve a intentarlo más tarde.</small></p>
+                }
+            </div>
+
+            <a href="#" [routerLink]="['/']" class="text-sm">¿Ya eres parte de la comunidad? <span
+                    class="text-(--secundary-color) hover:text-blue-700">Inicia sesión aquí</span></a>
+        </form>
+    </div>
+</div>

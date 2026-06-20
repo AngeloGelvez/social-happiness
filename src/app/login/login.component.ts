@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlName, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../service/login.service';
 import { LoginModel } from '../../class/login-model';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit{
