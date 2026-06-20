@@ -41,3 +41,9 @@ h1 {
   background: #FA941C;
   background: linear-gradient(48deg, rgba(250, 148, 28, 1) 0%, rgba(246, 60, 71, 1) 33%, rgba(226, 24, 132, 1) 64%, rgba(80, 97, 223, 1) 100%);
 }
+
+.imagen-profile {
+  width: auto;
+  height: 150px !important;
+  object-fit: cover;
+}

@@ -1,0 +1,62 @@
+<div class="flex flex-col min-h-screen p-6 gap-6">
+
+    <div class="flex gap-6">
+        <!--Profile Module-->
+        <div class="flex flex-col gap-8 rounded-lg bg-stone-100 p-5 w-1/4">
+            <a href="" class="flex gap-2 items-center text-base">
+                <span class="border border-1-solid border-blue-500 px-2 py-1 rounded-xl text-blue-500">
+                    <i class="ti ti-arrow-back-up"></i>
+                </span>
+                Volver
+            </a>
+            <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-8 justify-between">
+                    <div>
+                        <h2 class="font-semibold!">¡Este es tu rincón en la red!</h2>
+                        <p class="text-gray-500">Aquí es donde ocurre tu magia. En tu perfil tienes el control total
+                            para mostrarle al mundo quién eres.</p>
+                    </div>
+
+                    <div class="flex flex-col justify-between gap-8 pb-3 h-[380px]">
+                        <div class="flex flex-col gap-2">
+                            <li class="list-none"><a class="w-full text-(--secundary-color) flex items-center gap-2"
+                                    href="#"><i class="ti ti-location-bolt"></i> Mis publicaciones</a></li>
+                            <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i
+                                        class="ti ti-message-share"></i> Respuestas / Comentarios</a></li>
+                            <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i
+                                        class="ti ti-photo-bolt"></i> Multimedia</a></li>
+                            <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i
+                                        class="ti ti-settings"></i> Configuración</a></li>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <li class="list-none text-(--alert-color)"><a class="w-full flex items-center gap-2"
+                                    href="#"><i class="ti ti-logout"></i> Cerrar sesión</a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-6 w-full">
+            @if(userLocalStorage) {
+            <div class="flex flex-col bg-stone-100 rounded-lg gap-4">
+                <div class="background-feed-profile rounded-xl pr-46 pt-24">
+                    <img class="rounded-full bg-gray-100 p-1 mx-24" [src]="userLocalStorage.image" width="75px"}
+                        alt="imagen de perfil usuario">
+                </div>
+
+                <div class="flex flex-col gap-8 justify-between mx-24">
+                    <div class="px-3">
+                        <h2 class="font-semibold!">{{ userLocalStorage.firstName + " " + userLocalStorage.lastName }}</h2>
+                        <p class="text-gray-500">{{ "@" + userLocalStorage.username }}</p>
+                    </div>
+                </div>
+            </div>
+            }@else {
+            <p>No existe</p>
+            }
+        </div>
+    </div>
+</div>

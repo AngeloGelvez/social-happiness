@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../class/user';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile-module',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './profile-module.component.html',
 })
 export class ProfileModuleComponent implements OnInit{

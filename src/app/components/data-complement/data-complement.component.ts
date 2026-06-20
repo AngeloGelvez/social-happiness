@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TagComponent } from "../tag/tag.component";
 import { TagsService } from '../../../service/tags.service';
+import { QuotesCardModuleComponent } from "../quotes-card-module/quotes-card-module.component";
 
 @Component({
   selector: 'app-data-complement',
-  imports: [TagComponent],
+  imports: [TagComponent, QuotesCardModuleComponent],
   templateUrl: './data-complement.component.html',
 })
 export class DataComplementComponent implements OnInit {

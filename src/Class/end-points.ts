@@ -33,7 +33,7 @@ export class EndPoints {
         return this.TAGS;
     }
 
-    get getQuotas():string {
+    get getQuotes():string {
         return this.QUOTES;
     }
 }

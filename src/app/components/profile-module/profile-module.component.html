@@ -12,16 +12,16 @@
             </div>
 
             <div class="flex flex-col justify-between gap-8 pb-3 h-[380px]">
-                <div class="flex flex-col gap-2">
-                    <li class="list-none bg-gray-900 text-white rounded-xs px-3 py-1"><a class="w-full" href="#">Mi feed</a></li>
-                    <li class="list-none px-3 py-1"><a class="w-full" href="#">Descubrir</a></li>
-                    <li class="list-none px-3 py-1"><a class="w-full" href="#">Mis publicaciones</a></li>
-                    <li class="list-none px-3 py-1"><a class="w-full" href="#">Mis comentarios</a></li>
+                <div class="flex flex-col gap-2 px-3 py-1">
+                    <li class="list-none"><a class="w-full text-(--secundary-color) flex items-center gap-2" href="#" ><i class="ti ti-bolt"></i> Mi feed</a></li>
+                    <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-camera-search"></i> Descubrir</a></li>
+                    <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-location-bolt"></i> Mis publicaciones</a></li>
+                    <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-message"></i> Mis comentarios</a></li>
                 </div>
 
-                <div class="flex flex-col gap-2">
-                    <li class="list-none px-3 py-1"><a class="w-full" href="#">Mi Perfíl</a></li>
-                    <li class="list-none px-3 py-1 text-(--alert-color)"><a class="w-full" href="#">Cerrar sesión</a>
+                <div class="flex flex-col gap-2 px-3 py-1">
+                    <li class="list-none"><a class="w-full flex items-center gap-2" [routerLink]="['/', 'profile']"><i class="ti ti-user-square-rounded"></i> Mi Perfíl</a></li>
+                    <li class="list-none text-(--alert-color)"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-logout"></i> Cerrar sesión</a>
                     </li>
                 </div>
             </div>
