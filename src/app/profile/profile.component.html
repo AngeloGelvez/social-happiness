@@ -41,7 +41,7 @@
             <div class="flex flex-col bg-stone-100 rounded-lg gap-4">
                 <div class="background-feed-profile rounded-xl pr-46 pt-24">
                     <div class="mx-24 flex justify-between items-center w-full">
-                        <img class="rounded-full bg-gray-100 p-1" [src]="userLocalStorage.image" width="75px"}
+                        <img class="rounded-full bg-gray-100 p-1" [src]="userLocalStorage.getimage" width="75px"}
                             alt="imagen de perfil usuario">
     
                         <a href="" class="bg-blue-700 hover:bg-blue-900 px-2 py-1 font-semibold text-base text-white rounded-lg"><i class="ti ti-edit"></i>Editar</a>
@@ -51,26 +51,26 @@
                 <div class="flex flex-col gap-2 justify-between mx-24 pb-16">
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.firstName + " " + userLocalStorage.lastName }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getfirstName + " " + userLocalStorage.getlastName }}</p>
                             <p class="text-xs text-stone-500">Nombre completo</p>
                         </div>
-                        <p class="text-gray-500">{{ "@" + userLocalStorage.username }}</p>
+                        <p class="text-gray-500">{{ "@" + userLocalStorage.getusername }}</p>
                     </div>
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.birthDate | date }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getbirthDate | date }}</p>
                             <p class="text-xs text-stone-500">Fecha de cumpleaños</p>
                         </div>
-                        <p class="text-gray-500">{{ userLocalStorage.age + " Años" }}</p>
+                        <p class="text-gray-500">{{ userLocalStorage.getage + " Años" }}</p>
                     </div>
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.gender }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getgender }}</p>
                             <p class="text-xs text-stone-500">Genero</p>
                         </div>
-                        @if(userLocalStorage.gender == "female") {
+                        @if(userLocalStorage.getgender == "female") {
                             <p class="text-gray-500"><i class="ti ti-venus"></i></p>
                         }@else {
                             <p class="text-gray-500"><i class="ti ti-gender-male"></i></p>
@@ -79,7 +79,7 @@
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.phone }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getphone }}</p>
                             <p class="text-xs text-stone-500">Teléfono</p>
                         </div>
                         <p class="text-gray-500"><i class="ti ti-phone"></i></p>
@@ -87,7 +87,7 @@
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.email }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getemail }}</p>
                             <p class="text-xs text-stone-500">Email</p>
                         </div>
                         <p class="text-gray-500"><i class="ti ti-mail"></i></p>
@@ -95,7 +95,7 @@
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.address.country + ", " + userLocalStorage.address.city }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getaddress.country + ", " + userLocalStorage.getaddress.city }}</p>
                             <p class="text-xs text-stone-500">País residencia</p>
                         </div>
                         <p class="text-gray-500"><i class="ti ti-route-square-2"></i></p>
@@ -103,17 +103,17 @@
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.height }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getheight }}</p>
                             <p class="text-xs text-stone-500">Estatura (Cm)</p>
                         </div>
 
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.weight }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getweight }}</p>
                             <p class="text-xs text-stone-500">Peso (kg)</p>
                         </div>
 
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.eyeColor }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.geteyeColor }}</p>
                             <p class="text-xs text-stone-500">Color ojos</p>
                         </div>
                     </div>
@@ -125,19 +125,19 @@
                         </div>
 
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.hair.color }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.gethair.color }}</p>
                             <p class="text-xs text-stone-500">Color</p>
                         </div>
 
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.hair.type }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.gethair.type }}</p>
                             <p class="text-xs text-stone-500">Tipo</p>
                         </div>
                     </div>
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.university }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getuniversity }}</p>
                             <p class="text-xs text-stone-500">Universidad</p>
                         </div>
                         <p class="text-gray-500"><i class="ti ti-school"></i></p>
@@ -145,7 +145,7 @@
 
                     <div class="flex justify-between items-center  py-1">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.company.name }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getcompany.name }}</p>
                             <p class="text-xs text-stone-500">Lugar de trabajo</p>
                         </div>
                         <p class="text-gray-500"><i class="ti ti-building-cog"></i></p>
@@ -153,24 +153,24 @@
 
                     <div class="flex justify-between items-center py-1">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.company.title }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getcompany.title }}</p>
                             <p class="text-xs text-stone-500">Titulo</p>
                         </div>
                         
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.company.department }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getcompany.department }}</p>
                             <p class="text-xs text-stone-500">Departamento</p>
                         </div>
 
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.company.address.country }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getcompany.address.country }}</p>
                             <p class="text-xs text-stone-500">país</p>
                         </div>
                     </div>
 
                     <div class="flex justify-between items-center py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.company.address.city + ", " + userLocalStorage.company.address.state + ", " + userLocalStorage.company.address.address }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getcompany.address.city + ", " + userLocalStorage.getcompany.address.state + ", " + userLocalStorage.getcompany.address.address }}</p>
                             <p class="text-xs text-stone-500">Dirección</p>
                         </div>
                     </div>

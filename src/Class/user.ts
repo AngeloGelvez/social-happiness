@@ -1,23 +1,23 @@
 export class User {
-  private _id: number = 0;
-  private _firstName: string = '';
-  private _lastName: string = '';
-  private _maidenName: string = '';
-  private _age: number = 0;
-  private _gender: string = '';
-  private _email: string = '';
-  private _phone: string = '';
-  private _username: string = '';
-  private _password: string = '';
-  private _birthDate: string = '';
-  private _image: string = '';
-  private _bloodGroup: string = '';
-  private _height: number = 0;
-  private _weight: number = 0;
-  private _eyeColor: string = '';
-  private _hair: { color: string; type: string } = { color: '', type: '' };
-  private _ip: string = '';
-  private _address: {
+  private id: any = null;
+  private firstName: string = '';
+  private lastName: string = '';
+  private maidenName: string = '';
+  private age: number = 0;
+  private gender: string = '';
+  private email: string = '';
+  private phone: string = '';
+  private username: string = '';
+  private password: string = '';
+  private birthDate: string = '';
+  private image: string = '';
+  private bloodGroup: string = '';
+  private height: number = 0;
+  private weight: number = 0;
+  private eyeColor: string = '';
+  private hair: { color: string; type: string } = { color: '', type: '' };
+  private ip: string = '';
+  private address: {
     address: string;
     city: string;
     state: string;
@@ -34,9 +34,9 @@ export class User {
     coordinates: { lat: 0, lng: 0 },
     country: ''
   };
-  private _macAddress: string = '';
-  private _university: string = '';
-  private _bank: {
+  private macAddress: string = '';
+  private university: string = '';
+  private bank: {
     cardExpire: string;
     cardNumber: string;
     cardType: string;
@@ -49,7 +49,7 @@ export class User {
     currency: '',
     iban: ''
   };
-  private _company: {
+  private company: {
     department: string;
     name: string;
     title: string;
@@ -76,11 +76,11 @@ export class User {
       country: ''
     }
   };
-  private _ein: string = '';
-  private _ssn: string = '';
-  private _userAgent: string = '';
-  private _crypto: { coin: string; wallet: string; network: string } = { coin: '', wallet: '', network: '' };
-  private _role: string = '';
+  private ein: string = '';
+  private ssn: string = '';
+  private userAgent: string = '';
+  private crypto: { coin: string; wallet: string; network: string } = { coin: '', wallet: '', network: '' };
+  private role: string = '';
 
   // Constructor que permite instanciar vacío o con datos de la petición
   constructor(data?: any) {
@@ -91,127 +91,127 @@ export class User {
 
   // Método para rellenar o actualizar los datos limpiamente
   public fill(data: any): void {
-    this.id = data.id ?? 0;
-    this.firstName = data.firstName ?? '';
-    this.lastName = data.lastName ?? '';
-    this.maidenName = data.maidenName ?? '';
-    this.age = data.age ?? 0;
-    this.gender = data.gender ?? '';
-    this.email = data.email ?? '';
-    this.phone = data.phone ?? '';
-    this.username = data.username ?? '';
-    this.password = data.password ?? '';
-    this.birthDate = data.birthDate ?? '';
-    this.image = data.image ?? '';
-    this.bloodGroup = data.bloodGroup ?? '';
-    this.height = data.height ?? 0;
-    this.weight = data.weight ?? 0;
-    this.eyeColor = data.eyeColor ?? '';
-    this.hair = data.hair ?? { color: '', type: '' };
-    this.ip = data.ip ?? '';
-    this.address = data.address ?? { address: '', city: '', state: '', stateCode: '', postalCode: '', coordinates: { lat: 0, lng: 0 }, country: '' };
-    this.macAddress = data.macAddress ?? '';
-    this.university = data.university ?? '';
-    this.bank = data.bank ?? { cardExpire: '', cardNumber: '', cardType: '', currency: '', iban: '' };
-    this.company = data.company ?? { department: '', name: '', title: '', address: { address: '', city: '', state: '', stateCode: '', postalCode: '', coordinates: { lat: 0, lng: 0 }, country: '' } };
-    this.ein = data.ein ?? '';
-    this.ssn = data.ssn ?? '';
-    this.userAgent = data.userAgent ?? '';
-    this.crypto = data.crypto ?? { coin: '', wallet: '', network: '' };
-    this.role = data.role ?? '';
+    this.setid = data.id ?? null;
+    this.setfirstName = data.firstName ?? '';
+    this.setlastName = data.lastName ?? '';
+    this.setmaidenName = data.maidenName ?? '';
+    this.setage = data.age ?? 0;
+    this.setgender = data.gender ?? '';
+    this.setemail = data.email ?? '';
+    this.setphone = data.phone ?? '';
+    this.setusername = data.username ?? '';
+    this.setpassword = data.password ?? '';
+    this.setbirthDate = data.birthDate ?? '';
+    this.setimage = data.image ?? '';
+    this.setbloodGroup = data.bloodGroup ?? '';
+    this.setheight = data.height ?? 0;
+    this.setweight = data.weight ?? 0;
+    this.seteyeColor = data.eyeColor ?? '';
+    this.sethair = data.hair ?? { color: '', type: '' };
+    this.setip = data.ip ?? '';
+    this.setaddress = data.address ?? { address: '', city: '', state: '', stateCode: '', postalCode: '', coordinates: { lat: 0, lng: 0 }, country: '' };
+    this.setmacAddress = data.macAddress ?? '';
+    this.setuniversity = data.university ?? '';
+    this.setbank = data.bank ?? { cardExpire: '', cardNumber: '', cardType: '', currency: '', iban: '' };
+    this.setcompany = data.company ?? { department: '', name: '', title: '', address: { address: '', city: '', state: '', stateCode: '', postalCode: '', coordinates: { lat: 0, lng: 0 }, country: '' } };
+    this.setein = data.ein ?? '';
+    this.setssn = data.ssn ?? '';
+    this.setuserAgent = data.userAgent ?? '';
+    this.setcrypto = data.crypto ?? { coin: '', wallet: '', network: '' };
+    this.setrole = data.role ?? '';
   }
 
   // --- GETTERS Y SETTERS ---
 
-  get id(): number { return this._id; }
-  set id(value: number) { this._id = value; }
+  get getid(): number { return this.id; }
+  set setid(value: number) { this.id = value; }
 
-  get firstName(): string { return this._firstName; }
-  set firstName(value: string) { this._firstName = value; }
+  get getfirstName(): string { return this.firstName; }
+  set setfirstName(value: string) { this.firstName = value; }
 
-  get lastName(): string { return this._lastName; }
-  set lastName(value: string) { this._lastName = value; }
+  get getlastName(): string { return this.lastName; }
+  set setlastName(value: string) { this.lastName = value; }
 
-  get maidenName(): string { return this._maidenName; }
-  set maidenName(value: string) { this._maidenName = value; }
+  get getmaidenName(): string { return this.maidenName; }
+  set setmaidenName(value: string) { this.maidenName = value; }
 
-  get age(): number { return this._age; }
-  set age(value: number) { this._age = value; }
+  get getage(): number { return this.age; }
+  set setage(value: number) { this.age = value; }
 
-  get gender(): string { return this._gender; }
-  set gender(value: string) { this._gender = value; }
+  get getgender(): string { return this.gender; }
+  set setgender(value: string) { this.gender = value; }
 
-  get email(): string { return this._email; }
-  set email(value: string) { this._email = value; }
+  get getemail(): string { return this.email; }
+  set setemail(value: string) { this.email = value; }
 
-  get phone(): string { return this._phone; }
-  set phone(value: string) { this._phone = value; }
+  get getphone(): string { return this.phone; }
+  set setphone(value: string) { this.phone = value; }
 
-  get username(): string { return this._username; }
-  set username(value: string) { this._username = value; }
+  get getusername(): string { return this.username; }
+  set setusername(value: string) { this.username = value; }
 
-  get password(): string { return this._password; }
-  set password(value: string) { this._password = value; }
+  get getpassword(): string { return this.password; }
+  set setpassword(value: string) { this.password = value; }
 
-  get birthDate(): string { return this._birthDate; }
-  set birthDate(value: string) { this._birthDate = value; }
+  get getbirthDate(): string { return this.birthDate; }
+  set setbirthDate(value: string) { this.birthDate = value; }
 
-  get image(): string { return this._image; }
-  set image(value: string) { this._image = value; }
+  get getimage(): string { return this.image; }
+  set setimage(value: string) { this.image = value; }
 
-  get bloodGroup(): string { return this._bloodGroup; }
-  set bloodGroup(value: string) { this._bloodGroup = value; }
+  get getbloodGroup(): string { return this.bloodGroup; }
+  set setbloodGroup(value: string) { this.bloodGroup = value; }
 
-  get height(): number { return this._height; }
-  set height(value: number) { this._height = value; }
+  get getheight(): number { return this.height; }
+  set setheight(value: number) { this.height = value; }
 
-  get weight(): number { return this._weight; }
-  set weight(value: number) { this._weight = value; }
+  get getweight(): number { return this.weight; }
+  set setweight(value: number) { this.weight = value; }
 
-  get eyeColor(): string { return this._eyeColor; }
-  set eyeColor(value: string) { this._eyeColor = value; }
+  get geteyeColor(): string { return this.eyeColor; }
+  set seteyeColor(value: string) { this.eyeColor = value; }
 
-  get hair(): { color: string; type: string } { return this._hair; }
-  set hair(value: { color: string; type: string }) { this._hair = value; }
+  get gethair(): { color: string; type: string } { return this.hair; }
+  set sethair(value: { color: string; type: string }) { this.hair = value; }
 
-  get ip(): string { return this._ip; }
-  set ip(value: string) { this._ip = value; }
+  get getip(): string { return this.ip; }
+  set setip(value: string) { this.ip = value; }
 
-  get address(): { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } {
-    return this._address;
+  get getaddress(): { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } {
+    return this.address;
   }
-  set address(value: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string }) {
-    this._address = value;
-  }
-
-  get macAddress(): string { return this._macAddress; }
-  set macAddress(value: string) { this._macAddress = value; }
-
-  get university(): string { return this._university; }
-  set university(value: string) { this._university = value; }
-
-  get bank(): { cardExpire: string; cardNumber: string; cardType: string; currency: string; iban: string } { return this._bank; }
-  set bank(value: { cardExpire: string; cardNumber: string; cardType: string; currency: string; iban: string }) { this._bank = value; }
-
-  get company(): { department: string; name: string; title: string; address: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } } {
-    return this._company;
-  }
-  set company(value: { department: string; name: string; title: string; address: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } }) {
-    this._company = value;
+  set setaddress(value: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string }) {
+    this.address = value;
   }
 
-  get ein(): string { return this._ein; }
-  set ein(value: string) { this._ein = value; }
+  get getmacAddress(): string { return this.macAddress; }
+  set setmacAddress(value: string) { this.macAddress = value; }
 
-  get ssn(): string { return this._ssn; }
-  set ssn(value: string) { this._ssn = value; }
+  get getuniversity(): string { return this.university; }
+  set setuniversity(value: string) { this.university = value; }
 
-  get userAgent(): string { return this._userAgent; }
-  set userAgent(value: string) { this._userAgent = value; }
+  get getbank(): { cardExpire: string; cardNumber: string; cardType: string; currency: string; iban: string } { return this.bank; }
+  set setbank(value: { cardExpire: string; cardNumber: string; cardType: string; currency: string; iban: string }) { this.bank = value; }
 
-  get crypto(): { coin: string; wallet: string; network: string } { return this._crypto; }
-  set crypto(value: { coin: string; wallet: string; network: string }) { this._crypto = value; }
+  get getcompany(): { department: string; name: string; title: string; address: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } } {
+    return this.company;
+  }
+  set setcompany(value: { department: string; name: string; title: string; address: { address: string; city: string; state: string; stateCode: string; postalCode: string; coordinates: { lat: number; lng: number }; country: string } }) {
+    this.company = value;
+  }
 
-  get role(): string { return this._role; }
-  set role(value: string) { this._role = value; }
+  get getein(): string { return this.ein; }
+  set setein(value: string) { this.ein = value; }
+
+  get getssn(): string { return this.ssn; }
+  set setssn(value: string) { this.ssn = value; }
+
+  get getuserAgent(): string { return this.userAgent; }
+  set setuserAgent(value: string) { this.userAgent = value; }
+
+  get getcrypto(): { coin: string; wallet: string; network: string } { return this.crypto; }
+  set setcrypto(value: { coin: string; wallet: string; network: string }) { this.crypto = value; }
+
+  get getrole(): string { return this.role; }
+  set setrole(value: string) { this.role = value; }
 }

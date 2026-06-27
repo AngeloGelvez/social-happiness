@@ -1,19 +1,19 @@
 @if(userActive) {
     <div class="flex flex-col gap-2">
         <div class="background-feed-profile rounded-xl pr-46 pt-24">
-            <img class="rounded-full bg-gray-100 p-1" [src]="userActive.image" width="75px"
+            <img class="rounded-full bg-gray-100 p-1" [src]="userActive.getimage" width="75px"
                 alt="imagen de perfil usuario">
         </div>
 
         <div class="flex flex-col gap-8 justify-between">
             <div class="px-3">
-                <h2 class="font-semibold!">{{ userActive.firstName + " " + userActive.lastName }}</h2>
-                <p class="text-gray-500">{{ "@" + userActive.username }}</p>
+                <h2 class="font-semibold!">{{ userActive.getfirstName + " " + userActive.getlastName }}</h2>
+                <p class="text-gray-500">{{ "@" + userActive.getusername }}</p>
             </div>
 
             <div class="flex flex-col justify-between gap-8 pb-3 h-[380px]">
                 <div class="flex flex-col gap-2 px-3 py-1">
-                    <li class="list-none"><a class="w-full text-(--secundary-color) flex items-center gap-2" href="#" ><i class="ti ti-bolt"></i> Mi feed</a></li>
+                    <li class="list-none"><a class="w-full text-(--secundary-color) flex items-center gap-2" href="#" [routerLink]="['/feed']" ><i class="ti ti-bolt"></i> Mi feed</a></li>
                     <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-camera-search"></i> Descubrir</a></li>
                     <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-location-bolt"></i> Mis publicaciones</a></li>
                     <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-message"></i> Mis comentarios</a></li>

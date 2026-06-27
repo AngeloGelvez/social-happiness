@@ -1,21 +1,31 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Post } from '../../../class/post';
 import { PostsService } from '../../../service/posts.service';
 import { PostModuleComponent } from "../post-module/post-module.component";
 import { UserByIdService } from '../../../service/user-by-id.service';
 import { User } from '../../../class/user';
+import { PostsByTagService } from '../../../service/posts-by-tag.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-feed-module',
-  imports: [PostModuleComponent],
-  templateUrl: './feed-module.component.html',
+  selector: 'app-feed-tag-module',
+  imports: [PostModuleComponent, RouterLink, CommonModule],
+  templateUrl: './feed-tag-module.component.html',
 })
-export class FeedModuleComponent implements OnInit {
+export class FeedTagModuleComponent implements OnInit, OnDestroy {
+
+  private subParams!: Subscription;
+
+  postLitEmpty: boolean = false;
 
   postList!: Array<Post>;
   postListWithUser: Array<Post> = [];
 
   userByPost!: User;
+
+  tagName!: string;
 
   // Variables de control que debes tener en tu componente:
   loader: boolean = false;
@@ -24,19 +34,40 @@ export class FeedModuleComponent implements OnInit {
   hasMorePosts: boolean = true;
 
   constructor(
-    private getPostService: PostsService,
-    private getUserByIdService: UserByIdService
+    private getPostByTag: PostsByTagService,
+    private getUserByIdService: UserByIdService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getPosts(4, this.skipNumber);
+    // Escucha cambios en los parámetros de la URL (/ruta/:id)
+    this.subParams = this.activatedRoute.paramMap.subscribe(params => {
+      this.tagName = this.activatedRoute.snapshot.params["name"];
+      this.getPosts(this.tagName, 4, this.skipNumber);
+    });
   }
 
-  public getPosts(limitNumber: number, skipNumber: number): void {
-    this.getPostService.getPost(limitNumber, skipNumber).subscribe({
+  ngOnDestroy(): void {
+    this.subParams.unsubscribe();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("cambios");
+    console.log(changes);
+  }
+
+  public getPosts(nombreTag: string, limitNumber: number, skipNumber: number): void {
+    this.getPostByTag.getTagsByTag(nombreTag, limitNumber, skipNumber).subscribe({
       next: res => {
-        this.postList = res.posts;
-        this.addUserToPost();
+        console.log(res);
+        if (res.total == 0) {
+          this.postLitEmpty = true;
+          this.loader = true;
+          this.loaderMorePost = false;
+        } else {
+          this.postList = res.posts;
+          this.addUserToPost();
+        }
       },
       error: err => {
         console.log(err);
@@ -74,7 +105,7 @@ export class FeedModuleComponent implements OnInit {
 
   public onWindowScroll() {
     // 1. COMPUERTA DE BLOQUEO: Si ya está cargando datos o no hay más posts, salimos de la función.
-    if (this.loaderMorePost || !this.hasMorePosts) {
+    if (this.loaderMorePost || !this.hasMorePosts || !this.postLitEmpty) {
       return;
     }
 
@@ -90,7 +121,7 @@ export class FeedModuleComponent implements OnInit {
       this.loaderMorePost = true;
       this.skipNumber += 4;
 
-      this.getPosts(4, this.skipNumber);
+      this.getPosts(this.tagName, 4, this.skipNumber);
     }
   }
 }

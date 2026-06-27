@@ -1,23 +1,25 @@
+@if(!loaderFlag) {
 <div class="flex min-h-screen justify-center py-16">
     <div class="flex flex-col gap-6 justify-center items-center max-w-1/3">
         <img src="logo-SocialHappiness.png" alt="logotipo de la red social SocialHappiness" width="230px">
         <form [formGroup]="formularioRegistrarUsuario" class="flex flex-col gap-6 items-center text-sm">
             <div class="flex flex-col gap-2 items-center text-center">
                 <h1 class="text-xl font-semibold!">¡Qué bueno tenerte por aquí! ✨</h1>
-                <p class="text-gray-600">Únete a una red de mentes activas. Configura tu perfil profesional, gestiona tu contenido y amplifica tu alcance desde hoy.</p>
+                <p class="text-gray-600">Únete a una red de mentes activas. Configura tu perfil profesional, gestiona tu
+                    contenido y amplifica tu alcance desde hoy.</p>
             </div>
 
             <div class="flex gap-2 w-full items-center">
                 <div class="flex flex-col w-full">
                     <label for="nombre" class="text-justify">Nombre:</label>
-                    <input id="nombre" type="email" placeholder="Username"
+                    <input id="nombre" type="text" placeholder="Nombres"
                         class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
                         formControlName="nombre">
                 </div>
 
                 <div class="flex flex-col w-full">
                     <label for="apellido" class="text-justify">Apellido:</label>
-                    <input id="apellido" type="email" placeholder="Username"
+                    <input id="apellido" type="text" placeholder="Apellidos"
                         class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
                         formControlName="apellido">
                 </div>
@@ -28,35 +30,44 @@
                     <label for="nacimiento" class="text-justify">Fecha de nacimiento:</label>
                     <input id="nacimiento" type="date"
                         class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
-                        formControlName="password">
+                        formControlName="fechaNac" (input)="calcularEdad($event)">
                 </div>
 
                 <div class="flex flex-col w-1/3">
                     <label for="age" class="text-justify">Edad:</label>
                     <input id="age" type="text" placeholder="23 Años"
                         class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
-                        formControlName="password">
+                        formControlName="edad" readonly>
                 </div>
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label for="image" class="text-justify">Imagen perfil:</label>
+                <input id="image" type="text" placeholder="url:Imagen"
+                    class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                    formControlName="image">
             </div>
 
             <div class="flex flex-col w-full">
                 <label for="email" class="text-justify">Correo eletrónico:</label>
                 <input id="email" type="email" placeholder="ejemplo@gmail.com"
                     class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
-                    formControlName="email">
+                    formControlName="correo">
             </div>
 
             <div class="flex gap-2 w-full items-center">
                 <div class="flex flex-col w-full">
                     <label for="phone" class="text-justify">Teléfono</label>
-                    <input id="phone" type="number" placeholder="+57 123456789"
+                    <input id="phone" type="number" placeholder="123456789"
                         class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
-                        formControlName="phone">
+                        formControlName="telefono">
                 </div>
 
                 <div class="flex flex-col w-full">
                     <label for="gender" class="text-justify">Género</label>
-                    <select name="gender" id="gender" class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl">
+                    <select name="gender" id="gender"
+                        class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
+                        formControlName="genero">
                         <option value="male" selected>Masculino</option>
                         <option value="female">Femenino</option>
                     </select>
@@ -67,15 +78,16 @@
                 <label for="pass" class="text-justify">Contraseña</label>
                 <input id="pass" type="password" placeholder="••••••••"
                     class="border-(--secundary-color) border-2 border-solid px-2 py-1 rounded-xl"
-                    formControlName="password">
+                    formControlName="contrasena">
             </div>
 
             <div class="w-full flex flex-col items-center">
-                <button (click)="enviarFormulario()"
-                    class="w-full bg-gray-900 text-white px-2 py-1 rounded-xl cursor-pointer hover:bg-gray-700">¡Empezar mi aventura!</button>
+                <button (click)="setValues()"
+                    class="w-full bg-gray-900 text-white px-2 py-1 rounded-xl cursor-pointer hover:bg-gray-700">¡Empezar
+                    mi aventura!</button>
 
                 @if(errorFlag) {
-                    <p class="text-(--alert-color)"><small>!Ocurrio un error! Vuelve a intentarlo más tarde.</small></p>
+                <p class="text-(--alert-color)"><small>!Ocurrio un error! Vuelve a intentarlo más tarde.</small></p>
                 }
             </div>
 
@@ -84,3 +96,30 @@
         </form>
     </div>
 </div>
+}@else {
+    <div class="fixed inset-0 bg-gradient-to-br from-blue-50 to-slate-50 flex flex-col items-center justify-center p-4 z-50">
+    
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 max-w-sm w-full flex flex-col items-center text-center gap-6">
+        
+        <img src="logo-SocialHappiness.png" alt="logotipo de la red social SocialHappiness" width="230px">
+
+        <div class="flex flex-col gap-2">
+            <h1 class="text-2xl font-bold text-slate-800">¡Todo listo para empezar!</h1>
+            <p class="text-sm text-slate-500 px-4">
+                Estamos preparando tu rincón digital, acomodando tu feed y buscando la frase de hoy.
+            </p>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 mt-2">
+            <div class="h-2.5 w-2.5 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+            <div class="h-2.5 w-2.5 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+            <div class="h-2.5 w-2.5 bg-blue-600 rounded-full animate-bounce"></div>
+        </div>
+
+        <span class="text-xs font-semibold text-blue-600 tracking-wider uppercase animate-pulse">
+            Iniciando experiencia...
+        </span>
+        
+    </div>
+</div>
+}

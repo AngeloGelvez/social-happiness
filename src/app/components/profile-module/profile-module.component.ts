@@ -9,13 +9,13 @@ import { RouterLink } from '@angular/router';
 })
 export class ProfileModuleComponent implements OnInit{
 
-  userActive:User = new User();
+  userActive!:User
   
   ngOnInit(): void {
     let user = localStorage.getItem("user");
     if(user) {
-      this.userActive = JSON.parse(user);
-      //console.log(user);
+      this.userActive = new User(JSON.parse(user));
+      console.log(this.userActive);
     }else {
       console.log("No exite ningun usuario, no se puede renderizar");
     }

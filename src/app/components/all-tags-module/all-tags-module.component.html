@@ -1,0 +1,106 @@
+@if(!loaderTags) {
+<div class="flex flex-col gap-6 animate-[fadeIn_0.3s_ease-out]">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between bg-stone-100 px-5 py-4 rounded-xl gap-4">
+        <div>
+            <h1 class="text-xl font-bold text-slate-800 tracking-tight">Explorar Tendencias</h1>
+            <p class="text-xs text-stone-500 mt-0.5">Descubre qué rumbos están tomando las conversaciones hoy</p>
+        </div>
+
+        <div class="relative min-w-[240px]">
+            <input 
+                type="text" 
+                [(ngModel)]="searchTerm"
+                (ngModelChange)="processAndFilterTags()"
+                placeholder="Buscar etiqueta..."
+                class="w-full bg-white border border-stone-200 rounded-xl px-3 py-1.5 pr-8 text-xs text-slate-700 placeholder-stone-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all" 
+            />
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-2.5 top-2 text-stone-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+            </svg>
+        </div>
+    </div>
+
+    @if(categorizedGroups.length > 0) {
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            @for(category of categorizedGroups; track category.title) {
+                <div class="bg-white border border-stone-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-start gap-4 h-[245px]">
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                                <span>{{ category.icon }}</span> {{ category.title }}
+                            </h2>
+                            <span class="text-[10px] font-bold text-stone-400 bg-stone-100 px-2 py-0.5 rounded-full">
+                                {{ category.tags.length }} Tags
+                            </span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed">{{ category.description }}</p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-2 overflow-y-auto flex-1 content-start pr-1 scrollbar-thin">
+                        @for(tag of category.tags; track tag.slug) {
+                            <span 
+                                [className]="'px-3 py-1 text-xs font-medium rounded-full border shadow-sm hover:scale-105 cursor-pointer transition-all ' + category.colorClass">
+                                {{ tag.name }}
+                            </span>
+                        }
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    } @else {
+        
+        <div class="bg-white border border-stone-100 rounded-2xl p-10 flex flex-col items-center text-center max-w-xl mx-auto shadow-sm mt-4">
+            <div class="flex items-center justify-center w-16 h-16 bg-stone-100 text-stone-500 rounded-2xl mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3M8 11h6"/></svg>
+            </div>
+            <h2 class="text-base font-bold text-slate-800">No se encontraron etiquetas</h2>
+            <p class="text-xs text-stone-500 max-w-xs mt-1">Ninguna tendencia coincide con "<span class="font-semibold text-rose-600">{{ searchTerm }}</span>". Intenta con otra palabra clave.</p>
+        </div>
+
+    }
+</div>
+
+} @else {
+<div class="flex flex-col gap-6 animate-pulse">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between bg-stone-100 px-5 py-4 rounded-xl gap-4">
+        <div class="space-y-2">
+            <div class="h-5 bg-gray-300 rounded w-44"></div>
+            <div class="h-3 bg-gray-200 rounded w-64"></div>
+        </div>
+        <div class="h-8 bg-gray-200 rounded-xl w-full md:w-[240px]"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        @for(card of [1, 2, 3, 4]; track $index) {
+        <div class="bg-white border border-stone-100 rounded-2xl p-5 flex flex-col justify-start gap-5 shadow-sm h-[248px]">
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <div class="h-4 bg-gray-300 rounded w-1/2"></div>
+                    <div class="h-4 bg-gray-200 rounded-full w-12"></div>
+                </div>
+                <div class="space-y-2">
+                    <div class="h-3 bg-gray-200 rounded w-full"></div>
+                    <div class="h-3 bg-gray-200 rounded w-4/5"></div>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-2 pt-2 border-t border-stone-50 overflow-hidden flex-1 content-start">
+                <div class="h-6 bg-gray-200 rounded-full w-14"></div>
+                <div class="h-6 bg-gray-200 rounded-full w-16"></div>
+                <div class="h-6 bg-gray-200 rounded-full w-12"></div>
+                <div class="h-6 bg-gray-200 rounded-full w-20"></div>
+                <div class="h-6 bg-gray-200 rounded-full w-16"></div>
+                <div class="h-6 bg-gray-200 rounded-full w-14"></div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+}
