@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { FeedModuleComponent } from './components/feed-module/feed-module.component';
 import { FeedTagModuleComponent } from './components/feed-tag-module/feed-tag-module.component';
 import { AllTagsModuleComponent } from './components/all-tags-module/all-tags-module.component';
+import { PostByIdModuleComponent } from './components/post-by-id-module/post-by-id-module.component';
 
 export const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -14,7 +15,8 @@ export const routes: Routes = [
         { path:"", component: FeedModuleComponent },
         { path:"tag/:name", component: FeedTagModuleComponent },   
         { path:"tags", component: AllTagsModuleComponent },   
+        { path:"post/:id", component: PostByIdModuleComponent },   
     ]},
-    { path: "profile", component: ProfileComponent }
+    { path: "profile/:id", component: ProfileComponent }
     
 ];

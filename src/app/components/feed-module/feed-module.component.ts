@@ -65,6 +65,7 @@ export class FeedModuleComponent implements OnInit {
     });
 
     this.postListWithUser = [...this.postListWithUser, ...this.postList];
+    console.log(this.postListWithUser);
 
     setTimeout(() => {
       this.loader = true;

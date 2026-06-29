@@ -3,7 +3,8 @@
     <div class="flex gap-6">
         <!--Profile Module-->
         <div class="flex flex-col gap-8 rounded-lg bg-stone-100 p-5 pb-12 w-1/4 sticky top-5 h-screen">
-            <a [routerLink]="['/feed']" href="" class="flex gap-2 items-center text-base hover:bg-(--secundary-color) hover:text-white! px-2 py-1 rounded-lg border border-1-solid border-stone-200">
+            <a [routerLink]="['/feed']" href=""
+                class="flex gap-2 items-center text-base hover:bg-(--secundary-color) hover:text-white! px-2 py-1 rounded-lg border border-1-solid border-stone-200">
                 <i class="ti ti-arrow-back-up"></i>
                 Volver
             </a>
@@ -11,7 +12,8 @@
                 <div class="flex flex-col gap-8 justify-between h-full">
                     <div>
                         <h2 class="font-semibold!">¡Este es tu rincón en la red!</h2>
-                        <p class="text-gray-500 text-xs">Aquí es donde ocurre tu magia. En tu perfil tienes el control total para mostrarle al mundo quién eres.</p>
+                        <p class="text-gray-500 text-xs">Aquí es donde ocurre tu magia. En tu perfil tienes el control
+                            total para mostrarle al mundo quién eres.</p>
                     </div>
 
                     <div class="flex flex-col justify-between gap-8 pb-3 h-full">
@@ -41,17 +43,22 @@
             <div class="flex flex-col bg-stone-100 rounded-lg gap-4">
                 <div class="background-feed-profile rounded-xl pr-46 pt-24">
                     <div class="mx-24 flex justify-between items-center w-full">
-                        <img class="rounded-full bg-gray-100 p-1" [src]="userLocalStorage.getimage" width="75px"}
+                        <img class="rounded-full bg-gray-100 p-1" [src]="userLocalStorage.getimage" width="75px" }
                             alt="imagen de perfil usuario">
-    
-                        <a href="" class="bg-blue-700 hover:bg-blue-900 px-2 py-1 font-semibold text-base text-white rounded-lg"><i class="ti ti-edit"></i>Editar</a>
+
+                        @if(userPerfilActivo == userLocalStorage.getid) {
+                        <a href=""
+                            class="bg-blue-700 hover:bg-blue-900 px-2 py-1 font-semibold text-base text-white rounded-lg"><i
+                                class="ti ti-edit"></i>Editar</a>
+                        }
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-2 justify-between mx-24 pb-16">
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.getfirstName + " " + userLocalStorage.getlastName }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getfirstName + " " +
+                                userLocalStorage.getlastName }}</p>
                             <p class="text-xs text-stone-500">Nombre completo</p>
                         </div>
                         <p class="text-gray-500">{{ "@" + userLocalStorage.getusername }}</p>
@@ -71,9 +78,9 @@
                             <p class="text-xs text-stone-500">Genero</p>
                         </div>
                         @if(userLocalStorage.getgender == "female") {
-                            <p class="text-gray-500"><i class="ti ti-venus"></i></p>
+                        <p class="text-gray-500"><i class="ti ti-venus"></i></p>
                         }@else {
-                            <p class="text-gray-500"><i class="ti ti-gender-male"></i></p>
+                        <p class="text-gray-500"><i class="ti ti-gender-male"></i></p>
                         }
                     </div>
 
@@ -95,7 +102,8 @@
 
                     <div class="flex justify-between items-center border-b border-1-solid border-stone-300 py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.getaddress.country + ", " + userLocalStorage.getaddress.city }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getaddress.country + ", " +
+                                userLocalStorage.getaddress.city }}</p>
                             <p class="text-xs text-stone-500">País residencia</p>
                         </div>
                         <p class="text-gray-500"><i class="ti ti-route-square-2"></i></p>
@@ -156,7 +164,7 @@
                             <p class="font-semibold!">{{ userLocalStorage.getcompany.title }}</p>
                             <p class="text-xs text-stone-500">Titulo</p>
                         </div>
-                        
+
                         <div class="flex flex-col gap-0">
                             <p class="font-semibold!">{{ userLocalStorage.getcompany.department }}</p>
                             <p class="text-xs text-stone-500">Departamento</p>
@@ -170,14 +178,71 @@
 
                     <div class="flex justify-between items-center py-3">
                         <div class="flex flex-col gap-0">
-                            <p class="font-semibold!">{{ userLocalStorage.getcompany.address.city + ", " + userLocalStorage.getcompany.address.state + ", " + userLocalStorage.getcompany.address.address }}</p>
+                            <p class="font-semibold!">{{ userLocalStorage.getcompany.address.city + ", " +
+                                userLocalStorage.getcompany.address.state + ", " +
+                                userLocalStorage.getcompany.address.address }}</p>
                             <p class="text-xs text-stone-500">Dirección</p>
                         </div>
                     </div>
                 </div>
             </div>
             }@else {
-                <p>No existe</p>
+            <div
+                class="flex flex-col items-center justify-center bg-stone-100 rounded-lg p-12 text-center min-h-[550px] h-screen border border-stone-200/40 animate-[fadeIn_0.3s_ease-out]">
+
+                <div
+                    class="relative flex items-center justify-center w-20 h-20 bg-stone-200/80 text-stone-600 rounded-2xl mb-6">
+                    <i class="ti ti-user-off text-4xl"></i>
+                    <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-rose-500"></span>
+                    </span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight mb-2">Perfil no disponible</h2>
+                <p class="text-sm text-stone-500 max-w-sm mb-8 leading-relaxed">
+                    El enlace que seguiste podría estar roto, el usuario cambió su nombre identificador o la cuenta fue
+                    dada de baja de la plataforma.
+                </p>
+
+                <a [routerLink]="['/feed']"
+                    class="flex items-center gap-2 bg-slate-800 hover:bg-slate-900 font-semibold text-sm text-white px-5 py-2.5 rounded-xl shadow-md hover:scale-[1.02] cursor-pointer transition-all duration-200">
+                    <i class="ti ti-smart-home text-base"></i>
+                    Regresar al Feed Principal
+                </a>
+
+                <div class="mt-12 pt-8 border-t border-stone-300/60 w-full max-w-lg">
+                    <p class="text-[10px] text-stone-400 font-bold uppercase tracking-widest mb-4">¿Qué puedes intentar?
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+
+                        <div class="p-3.5 bg-white rounded-xl border border-stone-200 flex gap-3 items-start shadow-sm">
+                            <div class="p-1.5 bg-stone-100 rounded-lg text-stone-500">
+                                <i class="ti ti-zoom-check text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-700">Revisar la URL</p>
+                                <p class="text-[11px] text-stone-400 mt-0.5 leading-normal">Asegúrate de que el {{
+                                    "@username" }} esté bien escrito en la barra superior.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 bg-white rounded-xl border border-stone-200 flex gap-3 items-start shadow-sm">
+                            <div class="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
+                                <i class="ti ti-trending-up text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-700">Explorar Tendencias</p>
+                                <p class="text-[11px] text-stone-400 mt-0.5 leading-normal">Visita nuestra sección de
+                                    etiquetas para descubrir contenido nuevo hoy.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
             }
         </div>
     </div>

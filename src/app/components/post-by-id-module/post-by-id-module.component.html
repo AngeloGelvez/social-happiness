@@ -1,0 +1,139 @@
+<div class="flex flex-col gap-6 w-full animate-[fadeIn_0.3s_ease-out] p-1">
+
+    @if(postById) {
+        <div class="flex items-center justify-between bg-stone-100 px-5 py-3 rounded-xl border border-stone-200/60">
+            <a [routerLink]="['/feed']" class="flex gap-2 items-center text-xs font-semibold text-slate-700 bg-white hover:bg-stone-50 px-3 py-1.5 rounded-lg border border-stone-200 shadow-sm transition-all">
+                <i class="ti ti-arrow-left text-sm"></i>
+                Volver al Feed
+            </a>
+            <span class="text-[10px] font-bold text-stone-400 bg-stone-200/60 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                Post ID: #{{ postById.id }}
+            </span>
+        </div>
+
+        <div class="bg-white border border-stone-100 rounded-2xl p-6 shadow-sm flex flex-col gap-5">
+            
+            <div class="flex justify-between items-start">
+                <div class="flex gap-3 items-center">
+                    <img 
+                        class="rounded-full bg-stone-100 p-0.5 border border-stone-200" 
+                        [src]="postById.userModel?.img" 
+                        width="46px" 
+                        alt="Avatar del autor">
+                    <div class="flex flex-col">
+                        <p class="font-bold text-slate-800 text-sm leading-tight">{{ postById.userModel?.name }}</p>
+                        <p class="text-xs text-stone-500 mt-0.5">{{ "@" + postById.userModel?.username }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1.5 text-xs font-medium text-stone-400 bg-stone-50 px-2.5 py-1 rounded-lg">
+                    <i class="ti ti-eye text-sm"></i>
+                    <span>{{ postById.views }} Vistas</span>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-1">
+                <h1 class="text-xl font-bold text-slate-800 tracking-tight leading-snug">
+                    {{ postById.title }}
+                </h1>
+                <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">
+                    {{ postById.body }}
+                </p>
+            </div>
+
+            @if(postById.tags && postById.tags.length > 0) {
+                <div class="flex flex-wrap gap-2 pt-2 border-t border-stone-50">
+                    @for(tag of postById.tags; track tag) {
+                        <span class="px-2.5 py-0.5 text-[11px] font-medium text-blue-600 bg-blue-50 border border-blue-100 rounded-full transition-colors hover:bg-blue-100/70 cursor-pointer">
+                            {{ "#" + tag }}
+                        </span>
+                    }
+                </div>
+            }
+
+            <div class="flex items-center gap-4 pt-3 border-t border-stone-100 text-slate-700">
+                <button class="flex items-center gap-1.5 text-xs font-semibold bg-stone-100 hover:bg-green-50 hover:text-green-600 px-3 py-1.5 rounded-xl transition-all group">
+                    <i class="ti ti-thumb-up text-sm text-stone-400 group-hover:text-green-500 transition-colors"></i>
+                    <span>{{ postById.reactions?.likes }}</span>
+                </button>
+
+                <button class="flex items-center gap-1.5 text-xs font-semibold bg-stone-100 hover:bg-rose-50 hover:text-rose-600 px-3 py-1.5 rounded-xl transition-all group">
+                    <i class="ti ti-thumb-down text-sm text-stone-400 group-hover:text-rose-500 transition-colors"></i>
+                    <span>{{ postById.reactions?.dislikes }}</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-2 flex flex-col gap-4">
+            <div class="flex items-center gap-2 px-1">
+                <i class="ti ti-message-2 text-lg text-slate-700"></i>
+                <h3 class="text-base font-bold text-slate-800">Conversación</h3>
+                <span class="text-xs text-stone-400 font-medium">({{ commetsObj.total || 0 }} comentarios)</span>
+            </div>
+
+            <div class="bg-white border border-stone-100 rounded-xl p-4 shadow-sm flex gap-3 items-start">
+                <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                    P
+                </div>
+                <div class="flex-1 flex flex-col gap-2.5">
+                    <textarea 
+                        rows="2" 
+                        placeholder="Escribe una respuesta respetuosa..." 
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 text-xs text-slate-700 placeholder-stone-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all resize-none">
+                    </textarea>
+                    <div class="flex justify-end">
+                        <button class="bg-slate-800 hover:bg-slate-900 text-white font-semibold text-xs px-4 py-1.5 rounded-lg shadow-sm transition-colors">
+                            Comentar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                @for(comment of commetsObj.comments; track comment.id) {
+                    <div class="bg-stone-50 border border-stone-200/60 rounded-xl p-4 flex gap-3 shadow-2xs transition-all hover:border-stone-300/80">
+                        <div class="w-8 h-8 rounded-full bg-stone-200 text-stone-600 font-bold flex items-center justify-center text-xs shrink-0 uppercase">
+                            {{ comment.user?.username?.substring(0, 2) }}
+                        </div>
+                        <div class="flex-1 space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-xs font-bold text-slate-800">{{ comment.user?.fullName || comment.user?.username }}</span>
+                                <span class="text-[10px] text-stone-400 font-medium">Hace un momento</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                {{ comment.body }}
+                            </p>
+                        </div>
+                    </div>
+                } @empty {
+                    <div class="bg-white border border-dashed border-stone-200 rounded-xl p-8 text-center text-stone-400">
+                        <i class="ti ti-messages text-2xl block mb-1 text-stone-300"></i>
+                        <p class="text-xs font-medium">Nadie ha comentado todavía. ¡Sé el primero en romper el hielo!</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+    } @else {
+        <div class="flex flex-col items-center justify-center bg-stone-100 rounded-2xl p-12 text-center min-h-screen border border-stone-200/50 shadow-xs">
+            
+            <div class="relative flex items-center justify-center w-16 h-16 bg-stone-200/80 text-stone-600 rounded-xl mb-5">
+                <i class="ti ti-news-off text-3xl"></i>
+                <span class="absolute -top-0.5 -right-0.5 flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                </span>
+            </div>
+
+            <h2 class="text-xl font-bold text-slate-800 tracking-tight mb-1.5">Contenido no disponible</h2>
+            <p class="text-xs text-stone-500 max-w-sm mb-6 leading-relaxed">
+                La publicación que estás intentando consultar no existe, contiene un identificador inválido o ha sido retirada por su autor recientemente.
+            </p>
+
+            <a [routerLink]="['/feed']" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-900 font-semibold text-xs text-white px-4 py-2 rounded-xl shadow-sm transition-all duration-200">
+                <i class="ti ti-arrow-left text-sm"></i>
+                Volver a la línea de tiempo
+            </a>
+        </div>
+    }
+</div>

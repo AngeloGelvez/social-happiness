@@ -1,6 +1,7 @@
 export class EndPoints {
     private URL:string = "https://dummyjson.com";
     private USERS:string = `${this.URL}/users`;
+    private COMMENTS:string = `${this.URL}/comments`;
     private LOGIN:string = `${this.URL}/user/login`;
     private AUTHENTICATED:string = `${this.URL}/user/me`;
     private POSTS:string = `${this.URL}/posts`;
@@ -35,5 +36,9 @@ export class EndPoints {
 
     get getQuotes():string {
         return this.QUOTES;
+    }
+
+    get getComments():string {
+        return this.COMMENTS;
     }
 }
