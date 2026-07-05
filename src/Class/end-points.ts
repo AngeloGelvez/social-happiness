@@ -5,6 +5,7 @@ export class EndPoints {
     private LOGIN:string = `${this.URL}/user/login`;
     private AUTHENTICATED:string = `${this.URL}/user/me`;
     private POSTS:string = `${this.URL}/posts`;
+    private SEARCH_POST:string = `${this.URL}/posts/search`;
     private TAGS:string = `${this.URL}/posts/tags`;
     private QUOTES:string = `${this.URL}/quotes/random`;
 
@@ -28,6 +29,10 @@ export class EndPoints {
 
     get getPost():string {
         return this.POSTS;
+    }
+
+    get getSearchPost():string {
+        return this.SEARCH_POST;
     }
 
     get getTags():string {

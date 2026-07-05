@@ -38,7 +38,7 @@ export class DataComplementComponent implements OnInit {
     this.tagGetService.getTags().subscribe({
       next: (res) => {
         this.listTags = res.slice(160);
-        console.log(this.listTags);
+        //console.log(this.listTags);
       },
       error: (err) => {
         console.error(err);

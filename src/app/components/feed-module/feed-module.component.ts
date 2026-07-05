@@ -4,10 +4,12 @@ import { PostsService } from '../../../service/posts.service';
 import { PostModuleComponent } from "../post-module/post-module.component";
 import { UserByIdService } from '../../../service/user-by-id.service';
 import { User } from '../../../class/user';
+import { FormsModule } from '@angular/forms';
+import { SearchPostService } from '../../../service/search-post.service';
 
 @Component({
   selector: 'app-feed-module',
-  imports: [PostModuleComponent],
+  imports: [PostModuleComponent, FormsModule],
   templateUrl: './feed-module.component.html',
 })
 export class FeedModuleComponent implements OnInit {
@@ -23,13 +25,51 @@ export class FeedModuleComponent implements OnInit {
   skipNumber: number = 0;
   hasMorePosts: boolean = true;
 
+  public isSearching: boolean = false;
+  public searchFeedTerm: string = '';
+
   constructor(
     private getPostService: PostsService,
-    private getUserByIdService: UserByIdService
+    private getUserByIdService: UserByIdService,
+    private getPostSearchService: SearchPostService
   ) { }
 
   ngOnInit(): void {
     this.getPosts(4, this.skipNumber);
+  }
+
+  public searchInput() {
+    this.isSearching = !this.isSearching;
+    this.searchFeedTerm = "";
+    this.skipNumber = 0;
+    
+    this.postListWithUser = [];
+
+    if(this.isSearching === false) {
+      this.getPosts(4, this.skipNumber);
+    }
+  }
+
+  public searchPost() {
+    //console.log(this.searchFeedTerm);
+    this.postListWithUser = [];
+    this.getSearchPosts(this.searchFeedTerm, this.skipNumber);
+  }
+
+  public getSearchPosts(search: string, skipNumber: number): void {
+    this.getPostSearchService.getSearchPost(search, skipNumber).subscribe({
+      next: res => {
+        //console.log(res);
+        this.postList = res.posts;
+        this.addUserToPost();
+      },
+      error: err => {
+        console.log(err);
+      },
+      complete: () => {
+        this.loaderMorePost = false;
+      }
+    });
   }
 
   public getPosts(limitNumber: number, skipNumber: number): void {
@@ -75,7 +115,7 @@ export class FeedModuleComponent implements OnInit {
 
   public onWindowScroll() {
     // 1. COMPUERTA DE BLOQUEO: Si ya está cargando datos o no hay más posts, salimos de la función.
-    if (this.loaderMorePost || !this.hasMorePosts) {
+    if (this.loaderMorePost || !this.hasMorePosts || this.postListWithUser) {
       return;
     }
 
@@ -91,7 +131,11 @@ export class FeedModuleComponent implements OnInit {
       this.loaderMorePost = true;
       this.skipNumber += 4;
 
-      this.getPosts(4, this.skipNumber);
+      if(this.searchFeedTerm.length > 0) {
+        this.getSearchPosts(this.searchFeedTerm, this.skipNumber);
+      }else {
+        this.getPosts(4, this.skipNumber);
+      }
     }
   }
 }
