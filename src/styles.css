@@ -70,3 +70,7 @@ h1 {
   height: 150px !important;
   object-fit: cover;
 }
+
+.active-link {
+  color: var(--secundary-color) !important;
+}

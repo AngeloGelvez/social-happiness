@@ -7,6 +7,7 @@ import { FeedModuleComponent } from './components/feed-module/feed-module.compon
 import { FeedTagModuleComponent } from './components/feed-tag-module/feed-tag-module.component';
 import { AllTagsModuleComponent } from './components/all-tags-module/all-tags-module.component';
 import { PostByIdModuleComponent } from './components/post-by-id-module/post-by-id-module.component';
+import { UserPublicationComponent } from './components/user-publication/user-publication.component';
 
 export const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -17,6 +18,9 @@ export const routes: Routes = [
         { path:"tags", component: AllTagsModuleComponent },   
         { path:"post/:id", component: PostByIdModuleComponent },   
     ]},
+    { path:"publication", component: FeedComponent, children: [
+        { path:"", component: UserPublicationComponent },
+    ] },
     { path: "profile/:id", component: ProfileComponent }
     
 ];

@@ -1,5 +1,5 @@
 @if(user) {
-<div class="p-4 rounded-lg flex flex-col gap-4 bg-stone-100 cursor-pointer hover:bg-stone-50 hover:shadow-md" [routerLink]="['post', id]">
+<div class="p-4 rounded-lg flex flex-col gap-4 bg-stone-100 cursor-pointer hover:bg-stone-50 hover:shadow-md" [routerLink]="['/feed/post', id]">
     <div class="flex justify-between items-center">
         <div class="flex gap-3 items-center cursor-pointer hover:bg-white pr-2 rounded-md" [routerLink]="['/profile', userId]" title="Ver perfil">
             <div class="rounded-full p-2 bg-white">

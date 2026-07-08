@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Post } from '../../../class/post';
-import { PostsService } from '../../../service/posts.service';
 import { PostModuleComponent } from "../post-module/post-module.component";
 import { UserByIdService } from '../../../service/user-by-id.service';
 import { User } from '../../../class/user';
@@ -59,7 +58,7 @@ export class FeedTagModuleComponent implements OnInit, OnDestroy {
   public getPosts(nombreTag: string, limitNumber: number, skipNumber: number): void {
     this.getPostByTag.getTagsByTag(nombreTag, limitNumber, skipNumber).subscribe({
       next: res => {
-        console.log(res);
+        //console.log(res);
         if (res.total == 0) {
           this.postLitEmpty = true;
           this.loader = true;

@@ -12,7 +12,7 @@
     <!-- Renderizado de Posts reales -->
     @if(loader && postListWithUser) {
     @for(post of postListWithUser; track $index) {
-    <app-post-module [title]="post.title" [body]="post.body" [likes]="post.reactions.likes"
+    <app-post-module [id]="post.id"  [title]="post.title" [body]="post.body" [likes]="post.reactions.likes" [userId]="post.userId"
         [dislikes]="post.reactions.dislikes" [tags]="post.tags" [views]="post.views" [user]="post.userModel">
     </app-post-module>
     }

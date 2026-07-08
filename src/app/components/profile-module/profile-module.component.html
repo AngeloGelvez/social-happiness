@@ -13,10 +13,10 @@
 
             <div class="flex flex-col justify-between gap-8 pb-3 h-[380px]">
                 <div class="flex flex-col gap-2 px-3 py-1">
-                    <li class="list-none"><a class="w-full text-(--secundary-color) flex items-center gap-2" href="#" [routerLink]="['/feed']" ><i class="ti ti-bolt"></i> Mi feed</a></li>
-                    <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-camera-search"></i> Descubrir</a></li>
-                    <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-location-bolt"></i> Mis publicaciones</a></li>
-                    <li class="list-none"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-message"></i> Mis comentarios</a></li>
+                    <li class="list-none"><a class="w-full flex items-center gap-2" [routerLink]="['/feed']" [routerLinkActive]="'active-link'" ><i class="ti ti-bolt"></i> Mi feed</a></li>
+                    <li class="list-none"><a [routerLinkActive]="'active-link'"  class="w-full flex items-center gap-2"><i class="ti ti-camera-search"></i> Descubrir</a></li>
+                    <li class="list-none"><a [routerLink]="['/publication']" [routerLinkActive]="'active-link'"  class="w-full flex items-center gap-2"><i class="ti ti-location-bolt"></i> Mis publicaciones</a></li>
+                    <li class="list-none"><a [routerLinkActive]="'active-link'" class="w-full flex items-center gap-2"><i class="ti ti-message"></i> Mis comentarios</a></li>
                 </div>
 
                 <div class="flex flex-col gap-2 px-3 py-1">

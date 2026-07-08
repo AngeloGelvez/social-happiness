@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Post } from '../../../class/post';
 import { PostsService } from '../../../service/posts.service';
 import { PostModuleComponent } from "../post-module/post-module.component";
@@ -6,13 +6,17 @@ import { UserByIdService } from '../../../service/user-by-id.service';
 import { User } from '../../../class/user';
 import { FormsModule } from '@angular/forms';
 import { SearchPostService } from '../../../service/search-post.service';
+import { debounceTime, Subject, Subscription } from 'rxjs';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-feed-module',
-  imports: [PostModuleComponent, FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './feed-module.component.html',
 })
-export class FeedModuleComponent implements OnInit {
+export class FeedModuleComponent implements OnInit, OnDestroy {
+
+  responseData:any;
 
   postList!: Array<Post>;
   postListWithUser: Array<Post> = [];
@@ -28,6 +32,10 @@ export class FeedModuleComponent implements OnInit {
   public isSearching: boolean = false;
   public searchFeedTerm: string = '';
 
+  // Creamos un emisor de eventos
+  private unificadorDeTeclas = new Subject<string>();
+  private subscripcion!: Subscription;
+
   constructor(
     private getPostService: PostsService,
     private getUserByIdService: UserByIdService,
@@ -36,6 +44,22 @@ export class FeedModuleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPosts(4, this.skipNumber);
+
+    // Escuchamos el flujo y esperamos 500ms desde la última tecla prestada
+    this.subscripcion = this.unificadorDeTeclas.pipe(
+      debounceTime(500) 
+    ).subscribe(() => {
+      this.searchPost();
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscripcion.unsubscribe(); // Buena práctica para evitar fugas de memoria
+  }
+
+  // Este método recibe el evento del HTML
+  alEscribir() {
+    this.unificadorDeTeclas.next(this.searchFeedTerm);
   }
 
   public searchInput() {
@@ -59,7 +83,7 @@ export class FeedModuleComponent implements OnInit {
   public getSearchPosts(search: string, skipNumber: number): void {
     this.getPostSearchService.getSearchPost(search, skipNumber).subscribe({
       next: res => {
-        //console.log(res);
+        this.responseData = res;
         this.postList = res.posts;
         this.addUserToPost();
       },
@@ -115,7 +139,15 @@ export class FeedModuleComponent implements OnInit {
 
   public onWindowScroll() {
     // 1. COMPUERTA DE BLOQUEO: Si ya está cargando datos o no hay más posts, salimos de la función.
-    if (this.loaderMorePost || !this.hasMorePosts || this.postListWithUser) {
+    if (this.loaderMorePost || !this.hasMorePosts || !this.postListWithUser) {
+      return;
+    }
+
+    if(this.postListWithUser.length == this.responseData?.total) {
+      return;
+    }
+
+    if(this.isSearching && this.searchFeedTerm.length == 0) {
       return;
     }
 
