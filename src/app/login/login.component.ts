@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit{
       next: (res) => {
         console.log(res);
         localStorage.setItem("user", JSON.stringify(res)); 
+        localStorage.setItem("token", JSON.stringify(token));
 
         this.flagLoader = false;
         this.router.navigate(["/","feed"]);

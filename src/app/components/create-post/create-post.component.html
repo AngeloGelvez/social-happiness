@@ -1,0 +1,59 @@
+<!-- ==========================================
+     WIDGET: CREAR NUEVA PUBLICACIÓN
+     ========================================== -->
+<div class="bg-stone-50 border border-stone-200/60 rounded-2xl p-6 flex flex-col gap-4 shadow-sm w-full">
+    
+    <!-- Encabezado Inspiracional -->
+    <div class="space-y-1">
+        <!-- Reemplaza "usuario" por tu variable del usuario logueado, ej: currentUser?.firstName -->
+        <h2 class="text-lg font-bold text-slate-800 tracking-tight leading-snug">
+            ¿Qué tienes en mente hoy, {{ currentUser.getfirstName || 'Usuario' }}?
+        </h2>
+        <p class="text-xs text-stone-500 leading-relaxed">
+            Comparte una idea, una historia o tu frase favorita...
+        </p>
+    </div>
+
+    <!-- Formulario de Creación -->
+    <form class="flex flex-col gap-3.5 mt-1">
+        
+        <!-- Campo: Título -->
+        <div class="w-full relative group">
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="Título de tu publicación..."
+                class="w-full bg-white border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 placeholder-stone-400 focus:outline-none focus:border-slate-800 focus:ring-1 focus:ring-slate-800 transition-all font-medium shadow-2xs"
+                required>
+        </div>
+
+        <!-- Campo: Cuerpo (Contenido) -->
+        <div class="w-full relative group">
+            <textarea 
+                name="body" 
+                rows="3"
+                placeholder="Escribe todo el contenido aquí..."
+                class="w-full bg-white border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-700 placeholder-stone-400 focus:outline-none focus:border-slate-800 focus:ring-1 focus:ring-slate-800 transition-all resize-none shadow-2xs"
+                required></textarea>
+        </div>
+
+        <!-- Campo: Etiquetas (Tags) -->
+        <div class="w-full relative group">
+            <div class="absolute left-3.5 top-2.5 text-stone-400 font-bold text-sm select-none">#</div>
+            <input 
+                type="text" 
+                name="tags" 
+                placeholder="etiqueta1, etiqueta2, tech..."
+                class="w-full bg-white border border-stone-200 rounded-xl pl-8 pr-3.5 py-2.5 text-xs text-slate-700 placeholder-stone-400 focus:outline-none focus:border-slate-800 focus:ring-1 focus:ring-slate-800 transition-all shadow-2xs">
+        </div>
+
+        <!-- Botón de Acción -->
+        <button 
+            type="submit" 
+            class="mt-2 w-full bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold py-2.5 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-[0.98] flex justify-center items-center gap-2 cursor-pointer">
+            Publicar
+            <i class="ti ti-send text-xs"></i>
+        </button>
+        
+    </form>
+</div>

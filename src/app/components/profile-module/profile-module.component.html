@@ -1,61 +1,79 @@
 @if(userActive) {
-    <div class="flex flex-col gap-2">
-        <div class="background-feed-profile rounded-xl pr-46 pt-24">
-            <img class="rounded-full bg-gray-100 p-1" [src]="userActive.getimage" width="75px"
-                alt="imagen de perfil usuario">
-        </div>
+<div class="flex flex-col gap-2">
+    <div class="bg-[#f6f5f5] rounded-xl overflow-hidden">
+        <!-- Imagen de Portada -->
+        <div class="h-28 background-image"></div>
 
-        <div class="flex flex-col gap-8 justify-between">
-            <div class="px-3">
-                <h2 class="font-semibold!">{{ userActive.getfirstName + " " + userActive.getlastName }}</h2>
-                <p class="text-gray-500">{{ "@" + userActive.getusername }}</p>
-            </div>
-
-            <div class="flex flex-col justify-between gap-8 pb-3 h-[380px]">
-                <div class="flex flex-col gap-2 px-3 py-1">
-                    <li class="list-none"><a class="w-full flex items-center gap-2" [routerLink]="['/feed']" [routerLinkActive]="'active-link'" ><i class="ti ti-bolt"></i> Mi feed</a></li>
-                    <li class="list-none"><a [routerLinkActive]="'active-link'"  class="w-full flex items-center gap-2"><i class="ti ti-camera-search"></i> Descubrir</a></li>
-                    <li class="list-none"><a [routerLink]="['/publication']" [routerLinkActive]="'active-link'"  class="w-full flex items-center gap-2"><i class="ti ti-location-bolt"></i> Mis publicaciones</a></li>
-                    <li class="list-none"><a [routerLinkActive]="'active-link'" class="w-full flex items-center gap-2"><i class="ti ti-message"></i> Mis comentarios</a></li>
-                </div>
-
-                <div class="flex flex-col gap-2 px-3 py-1">
-                    <li class="list-none"><a class="w-full flex items-center gap-2" [routerLink]="['/', 'profile', userActive.getid]"><i class="ti ti-user-square-rounded"></i> Mi Perfíl</a></li>
-                    <li class="list-none text-(--alert-color)"><a class="w-full flex items-center gap-2" href="#"><i class="ti ti-logout"></i> Cerrar sesión</a>
-                    </li>
-                </div>
+        <!-- Sección de perfil -->
+        <div class="px-0">
+            <div class="relative -mt-10">
+                <img class="imagen-profile-avatar" [src]="userActive.getimage"
+                    alt="imagen de perfil de {{ userActive.getfirstName || 'usuario' }}">
             </div>
         </div>
     </div>
+
+    <div class="flex flex-col gap-8 justify-between">
+        <div class="px-3">
+            <h2 class="font-semibold!">{{ userActive.getfirstName + " " + userActive.getlastName }}</h2>
+            <p class="text-gray-500">{{ "@" + userActive.getusername }}</p>
+        </div>
+
+        <div class="flex flex-col justify-between gap-8 pb-3 h-[380px]">
+            <div class="flex flex-col gap-2 px-3 py-1">
+                <li class="list-none"><a class="w-full flex items-center gap-2" [routerLink]="['/feed']"
+                        [routerLinkActive]="'active-link'"><i class="ti ti-bolt"></i> Mi feed</a></li>
+                <li class="list-none"><a [routerLinkActive]="'active-link'" [routerLink]="['/post/add']"
+                        class="w-full flex items-center gap-2"><i class="ti ti-camera-search"></i> Publicar</a></li>
+                <li class="list-none"><a [routerLink]="['/publication']" [routerLinkActive]="'active-link'"
+                        class="w-full flex items-center gap-2"><i class="ti ti-location-bolt"></i> Mis publicaciones</a>
+                </li>
+                @if(userActive.getrole == "admin") {
+                <li class="list-none"><a [routerLink]="['/dashboard']" [routerLinkActive]="'active-link'"
+                        class="w-full flex items-center gap-2"><i class="ti ti-layout-dashboard"></i> Dashboard</a></li>
+                }
+            </div>
+
+            <div class="flex flex-col gap-2 px-3 py-1">
+                <li class="list-none"><a class="w-full flex items-center gap-2"
+                        [routerLink]="['/', 'profile', userActive.getid]"><i class="ti ti-user-square-rounded"></i> Mi
+                        Perfíl</a></li>
+                <li class="list-none text-(--alert-color)"><a class="w-full flex items-center gap-2"
+                        [routerLink]="['/']" (click)="cerrarSesion()"><i class="ti ti-logout"></i> Cerrar sesión</a>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
 }@else {
-    <div class="flex flex-col gap-2 animate-pulse">
-    
-        <div class="bg-gray-200 rounded-xl pr-46 pt-24">
-            <div class="rounded-full bg-gray-300 w-[75px] h-[75px] ml-4 -mb-4"></div>
+<div class="flex flex-col gap-2 animate-pulse">
+
+    <div class="bg-gray-200 rounded-xl pr-46 pt-24">
+        <div class="rounded-full bg-gray-300 w-[75px] h-[75px] ml-4 -mb-4"></div>
+    </div>
+
+    <div class="flex flex-col gap-8 justify-between mt-4">
+
+        <div class="px-3 flex flex-col gap-3">
+            <div class="h-5 bg-gray-300 rounded-md w-3/4"></div>
+            <div class="h-4 bg-gray-200 rounded-md w-1/2"></div>
         </div>
 
-        <div class="flex flex-col gap-8 justify-between mt-4">
-            
-            <div class="px-3 flex flex-col gap-3">
-                <div class="h-5 bg-gray-300 rounded-md w-3/4"></div>
-                <div class="h-4 bg-gray-200 rounded-md w-1/2"></div>
+        <div class="flex flex-col justify-between gap-8 h-[340px]">
+
+            <div class="flex flex-col gap-4 px-3">
+                <div class="h-8 bg-gray-300 rounded-xl w-full"></div>
+                <div class="h-8 bg-gray-200 rounded-xl w-11/12"></div>
+                <div class="h-8 bg-gray-200 rounded-xl w-full"></div>
+                <div class="h-8 bg-gray-200 rounded-xl w-10/12"></div>
             </div>
 
-            <div class="flex flex-col justify-between gap-8 h-[340px]">
-                
-                <div class="flex flex-col gap-4 px-3">
-                    <div class="h-8 bg-gray-300 rounded-xl w-full"></div>
-                    <div class="h-8 bg-gray-200 rounded-xl w-11/12"></div>
-                    <div class="h-8 bg-gray-200 rounded-xl w-full"></div>
-                    <div class="h-8 bg-gray-200 rounded-xl w-10/12"></div>
-                </div>
-
-                <div class="flex flex-col gap-4 px-3">
-                    <div class="h-8 bg-gray-200 rounded-xl w-full"></div>
-                    <div class="h-8 bg-gray-200 rounded-xl w-11/12"></div>
-                </div>
-                
+            <div class="flex flex-col gap-4 px-3">
+                <div class="h-8 bg-gray-200 rounded-xl w-full"></div>
+                <div class="h-8 bg-gray-200 rounded-xl w-11/12"></div>
             </div>
+
         </div>
     </div>
+</div>
 }

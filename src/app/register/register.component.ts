@@ -70,6 +70,8 @@ export class RegisterComponent implements OnInit{
       next: (res) => {
         //console.log(res);
         localStorage.setItem("user", JSON.stringify(res));
+        //mala practica
+        localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3ODQzOTc2MjgsImV4cCI6MTc4NDQwMTIyOH0.w15iIl2LiX35zgOE11EAf2zgcYwRKEnNogx181QK2kE");
       },
       error: (err) => {
         console.log(err);

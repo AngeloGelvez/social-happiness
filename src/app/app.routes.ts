@@ -8,19 +8,29 @@ import { FeedTagModuleComponent } from './components/feed-tag-module/feed-tag-mo
 import { AllTagsModuleComponent } from './components/all-tags-module/all-tags-module.component';
 import { PostByIdModuleComponent } from './components/post-by-id-module/post-by-id-module.component';
 import { UserPublicationComponent } from './components/user-publication/user-publication.component';
+import { authGuard } from './auth-routes/auth-routes';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
     { path: "", component: LoginComponent },
     { path: "register", component: RegisterComponent },
-    { path: "feed", component: FeedComponent, children: [
+    { path: "feed", canActivate: [authGuard], component: FeedComponent, children: [
         { path:"", component: FeedModuleComponent },
         { path:"tag/:name", component: FeedTagModuleComponent },   
         { path:"tags", component: AllTagsModuleComponent },   
         { path:"post/:id", component: PostByIdModuleComponent },   
     ]},
-    { path:"publication", component: FeedComponent, children: [
+    { path:"publication", canActivate: [authGuard], component: FeedComponent, children: [
         { path:"", component: UserPublicationComponent },
     ] },
-    { path: "profile/:id", component: ProfileComponent }
+    { path:"dashboard", canActivate: [authGuard], component: FeedComponent, children: [
+        { path: "", component: DashboardComponent },
+    ] },
+    { path:"post/add", canActivate: [authGuard], component: FeedComponent, children: [
+        { path: "", component: CreatePostComponent },
+    ] },
+    { path: "profile/:id", canActivate: [authGuard], component: ProfileComponent },
+    { path: "**", component: LoginComponent }
     
 ];

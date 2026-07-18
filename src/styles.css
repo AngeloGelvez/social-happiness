@@ -2,7 +2,7 @@
   --primary-color: #fa941c;
   --secundary-color: #5061df;
   --alert-color: #f63c47;
-  --background-gradient: linear-gradient(91deg,rgba(250, 148, 28, 1) 0%, rgba(246, 60, 71, 1) 33%, rgba(226, 24, 132, 1) 64%, rgba(80, 97, 223, 1) 100%);
+  --background-card: #f6f5f5;
 }
 
 * {
@@ -12,63 +12,33 @@
   font-style: normal;
 }
 
-/* ==========================================================================
-   Transiciones Suaves Globales
-   ========================================================================== */
-
-*, *::before, *::after {
-    /* Seleccionamos solo propiedades estéticas para no arruinar el rendimiento de la página */
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
-    
-    /* 200 milisegundos es el tiempo perfecto: ni muy lento, ni instantáneo */
-    transition-duration: 200ms; 
-    
-    /* 'cubic-bezier' emula la curva de aceleración natural de Tailwind CSS */
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Accesibilidad: Respeta a los usuarios que prefieren no ver animaciones en su sistema operativo */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        transition-duration: 0ms !important;
-        animation-duration: 0ms !important;
-    }
-}
-
-h1 {
-  font-size: 20px;
-}
-
-
-.background-feed-profile {
-  /* Forzamos a que tenga un tamaño mínimo si está vacío */
-  min-height: 150px; 
-  
-  /* El truco del degradado (separado por una coma de la url) */
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 77%, rgba(246, 245, 245, 1) 77%), 
-                    url("../public/imagen-login.jpg") !important;
-  
-  background-position: center !important;
-  background-size: cover !important;
-  background-repeat: no-repeat;
-}
-
-
 .background-image {
+  background-image: url("../public/imagen-login.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.background-image-login {
   background-image: url(../public/imagen-login.jpg);
   background-position: center;
   background-size: cover;
 }
 
-.background-gradient {
-  background: #FA941C;
-  background: linear-gradient(48deg, rgba(250, 148, 28, 1) 0%, rgba(246, 60, 71, 1) 33%, rgba(226, 24, 132, 1) 64%, rgba(80, 97, 223, 1) 100%);
+.imagen-profile-avatar {
+  width: 75px;
+  height: 75px;
+  object-fit: cover; 
+  border-radius: 50%; 
+  border: 4px solid var(--background-card); 
+  background-color: #e5e7eb; 
 }
 
-.imagen-profile {
-  width: auto;
-  height: 150px !important;
-  object-fit: cover;
+*, *::before, *::after {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 200ms; 
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .active-link {

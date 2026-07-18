@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../class/user';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile-module',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './profile-module.component.html',
 })
 export class ProfileModuleComponent implements OnInit{
@@ -19,5 +20,10 @@ export class ProfileModuleComponent implements OnInit{
     }else {
       console.log("No exite ningun usuario, no se puede renderizar");
     }
+  }
+
+  cerrarSesion() {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   }
 }

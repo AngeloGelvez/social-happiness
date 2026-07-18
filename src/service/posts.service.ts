@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EndPoints } from '../class/end-points';
 import { Observable } from 'rxjs';
+import { Post } from '../class/post';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,18 @@ export class PostsService {
   public getPost(limitNumber:number, skipNumber:number):Observable<any> {
     return this.http.get<any>(
       `${this.rutaPostEndPoint.getPost}?limit=${limitNumber}&skip=${skipNumber}`,
+      {
+        headers: {
+          "Content-Type": "Application/json"
+        }
+      }
+    );
+  }
+
+  public postPost(body:Post):Observable<any> {
+    return this.http.post<any>(
+      `${this.rutaPostEndPoint.getPost}/add`,
+      body,
       {
         headers: {
           "Content-Type": "Application/json"

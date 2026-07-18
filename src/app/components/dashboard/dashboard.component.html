@@ -1,0 +1,124 @@
+<div class="w-full max-w-5xl mx-auto flex flex-col gap-6 animate-[fadeIn_0.3s_ease-out]">
+
+    <!-- ==========================================
+         NUEVO ENCABEZADO (Estilo imagen 2)
+         ========================================== -->
+    <div class="bg-stone-50 border border-stone-200/60 rounded-[1.25rem] p-6 shadow-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+            <h1 class="text-2xl font-semibold text-slate-800 tracking-tight">Panel de Estadísticas</h1>
+            <p class="text-sm text-stone-500 mt-1">Resumen general de la actividad y visualización de datos de la red.</p>
+        </div>
+        
+        <!-- Píldora de Total -->
+        <div class="bg-white border border-stone-200/80 rounded-full px-4 py-1.5 shadow-xs flex items-center gap-2 shrink-0">
+            <span class="text-sm font-medium text-stone-600">Total interacciones:</span>
+            <span class="text-sm font-bold text-blue-600">{{ totalPosts + totalComments }}</span>
+        </div>
+    </div>
+
+    @if(isLoading) {
+        <!-- SKELETON LOADER -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            @for(item of [1,2,3,4]; track $index) {
+                <div class="bg-white border border-stone-200/60 rounded-2xl p-5 shadow-xs animate-pulse flex flex-col gap-4">
+                    <div class="w-10 h-10 bg-stone-200 rounded-lg"></div>
+                    <div>
+                        <div class="h-6 bg-stone-300 rounded w-1/2 mb-2"></div>
+                        <div class="h-3 bg-stone-200 rounded w-3/4"></div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-2">
+            <div class="lg:col-span-2 h-80 bg-white border border-stone-200/60 rounded-2xl p-6 shadow-xs animate-pulse"></div>
+            <div class="h-80 bg-white border border-stone-200/60 rounded-2xl p-6 shadow-xs animate-pulse"></div>
+        </div>
+    } @else {
+        <!-- ==========================================
+             NUEVAS TARJETAS DE MÉTRICAS (Distribución vertical)
+             ========================================== -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- Tarjeta 1 -->
+            <div class="bg-white border border-stone-200/60 rounded-2xl p-5 shadow-xs flex flex-col gap-3 hover:-translate-y-1 hover:shadow-sm hover:border-blue-200 transition-all duration-300 group">
+                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <i class="ti ti-file-text text-xl"></i>
+                </div>
+                <div class="mt-1">
+                    <h3 class="text-2xl lg:text-3xl font-extrabold text-slate-800 leading-none">{{ totalPosts | number }}</h3>
+                    <p class="text-[10px] lg:text-xs font-bold text-stone-400 uppercase tracking-wider mt-1.5 truncate">Publicaciones</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="bg-white border border-stone-200/60 rounded-2xl p-5 shadow-xs flex flex-col gap-3 hover:-translate-y-1 hover:shadow-sm hover:border-rose-200 transition-all duration-300 group">
+                <div class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-colors">
+                    <i class="ti ti-messages text-xl"></i>
+                </div>
+                <div class="mt-1">
+                    <h3 class="text-2xl lg:text-3xl font-extrabold text-slate-800 leading-none">{{ totalComments | number }}</h3>
+                    <p class="text-[10px] lg:text-xs font-bold text-stone-400 uppercase tracking-wider mt-1.5 truncate">Comentarios</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="bg-white border border-stone-200/60 rounded-2xl p-5 shadow-xs flex flex-col gap-3 hover:-translate-y-1 hover:shadow-sm hover:border-emerald-200 transition-all duration-300 group">
+                <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <i class="ti ti-users text-xl"></i>
+                </div>
+                <div class="mt-1">
+                    <h3 class="text-2xl lg:text-3xl font-extrabold text-slate-800 leading-none">{{ totalUsers | number }}</h3>
+                    <p class="text-[10px] lg:text-xs font-bold text-stone-400 uppercase tracking-wider mt-1.5 truncate">Usuarios</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta 4 -->
+            <div class="bg-white border border-stone-200/60 rounded-2xl p-5 shadow-xs flex flex-col gap-3 hover:-translate-y-1 hover:shadow-sm hover:border-amber-200 transition-all duration-300 group">
+                <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                    <i class="ti ti-chart-pie text-xl"></i>
+                </div>
+                <div class="mt-1">
+                    <h3 class="text-2xl lg:text-3xl font-extrabold text-slate-800 leading-none">
+                        {{ (totalPosts > 0 ? (totalComments / totalPosts) : 0) | number:'1.1-1' }}
+                    </h3>
+                    <p class="text-[10px] lg:text-xs font-bold text-stone-400 uppercase tracking-wider mt-1.5 truncate">Respuestas / Post</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             GRÁFICOS PERSONALIZADOS
+             ========================================== -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-2">
+            
+            <!-- Gráfico de Barras -->
+            <div class="lg:col-span-2 bg-white border border-stone-200/60 rounded-2xl p-6 shadow-xs flex flex-col">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800 tracking-tight">Volumen de Etiquetas Populares</h3>
+                        <p class="text-xs text-stone-500 mt-0.5">Cantidad de publicaciones del top 5 global.</p>
+                    </div>
+                    <div class="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
+                        <i class="ti ti-chart-bar text-lg"></i>
+                    </div>
+                </div>
+                <div class="relative h-64 w-full mt-auto">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico de Dona -->
+            <div class="bg-white border border-stone-200/60 rounded-2xl p-6 shadow-xs flex flex-col">
+                <div class="flex flex-col text-center mb-2">
+                    <h3 class="text-base font-bold text-slate-800 tracking-tight">Interacciones</h3>
+                    <p class="text-xs text-stone-500 mt-0.5">Distribución general de la red.</p>
+                </div>
+                <div class="relative h-60 w-full flex items-center justify-center mt-auto">
+                    <canvas id="interactionChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
