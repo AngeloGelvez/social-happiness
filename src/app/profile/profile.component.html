@@ -41,16 +41,23 @@
         <div class="flex flex-col gap-6 w-full">
             @if(userLocalStorage) {
             <div class="flex flex-col bg-stone-100 rounded-lg gap-4">
-                <div class="background-feed-profile rounded-xl pr-46 pt-24">
-                    <div class="mx-24 flex justify-between items-center w-full">
-                        <img class="rounded-full bg-gray-100 p-1" [src]="userLocalStorage.getimage" width="75px" }
-                            alt="imagen de perfil usuario">
+                <div class="bg-[#f6f5f5] rounded-xl overflow-hidden">
+                    <div class="h-28 background-image"></div>
 
-                        @if(userPerfilActivo == userLocalStorage.getid) {
-                        <a href=""
-                            class="bg-blue-700 hover:bg-blue-900 px-2 py-1 font-semibold text-base text-white rounded-lg"><i
-                                class="ti ti-edit"></i>Editar</a>
-                        }
+                    <!-- Sección de perfil (Foto y nombre) -->
+                    <div class="mx-24">
+                        <!-- Contenedor de la foto con margen negativo para subirla -->
+                        <!-- -mt-10 equivale a -40px en Tailwind, lo que sube la mitad de la foto -->
+                        <div class="relative flex items-center justify-between -mt-10">
+                            <img class="imagen-profile-avatar" [src]="userLocalStorage.getimage"
+                                alt="imagen de perfil de {{ userLocalStorage.getfirstName }}">
+
+                            @if(userPerfilActivo == userLocalStorage.getid) {
+                            <a href=""
+                                class="bg-blue-700 hover:bg-blue-900 px-2 py-1 font-semibold text-base text-white rounded-lg h-fit"><i
+                                    class="ti ti-edit"></i>Editar</a>
+                            }
+                        </div>
                     </div>
                 </div>
 
