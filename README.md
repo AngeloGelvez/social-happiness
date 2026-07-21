@@ -48,3 +48,12 @@ La interfaz de usuario y la experiencia estética están fuertemente inspiradas 
 2. **Social Media Concept:** [Ver Diseño en Dribbble](https://dribbble.com/shots/22588296-Social-Media-Concept) (Inspiración para la estructura de la barra lateral, dashboard, interacciones rápidas y tipografías).
 
 ---
+
+# Link del proyecto para la visualización
+
+Puedes crear un nuevo usuario o también iniciar sesión con a siguiente cuenta de administrador.
+Usuario: emilys
+Contrasenña: emilyspass
+
+Link del sitio web
+https://angelogelvez.github.io/social-happiness/
