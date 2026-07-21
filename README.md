@@ -52,8 +52,9 @@ La interfaz de usuario y la experiencia estética están fuertemente inspiradas 
 # Link del proyecto para la visualización
 
 Puedes crear un nuevo usuario o también iniciar sesión con a siguiente cuenta de administrador.
-Usuario: emilys
-Contrasenña: emilyspass
+
+1. Usuario: emilys
+2. Contrasenña: emilyspass
 
 Link del sitio web
 https://angelogelvez.github.io/social-happiness/
